@@ -1,0 +1,20 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "allowBranch": "master",
+      "ignoreChanges": [
+        "*.md"
+      ],
+      "message": "chore: npm publish"
+    }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
