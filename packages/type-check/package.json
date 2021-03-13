@@ -1,12 +1,15 @@
 {
   "name": "@ginlibs/type-check",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest",
     "test:cov": "jest --coverage --noStackTrace",
@@ -55,5 +58,6 @@
     "ts-jest": "^26.3.0",
     "tslib": "^2.0.0",
     "typescript": "^4.0.2"
-  }
+  },
+  "gitHead": "5fad78b52c34dbc9ed8fb00cf23c51f11ed31f8b"
 }
