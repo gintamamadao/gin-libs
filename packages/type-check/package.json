@@ -11,7 +11,7 @@
     "test": "jest",
     "test:cov": "jest --coverage --noStackTrace",
     "dev": "rollup -c rollup.config.js -w",
-    "build": "rimraf lib; rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.js",
     "commit": "git-cz",
     "pub": "lerna publish"
   },
