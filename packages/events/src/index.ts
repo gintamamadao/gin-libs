@@ -7,7 +7,7 @@ class Events {
     this.globalConfig = config || {}
   }
 
-  on = (taskName: string, handle: Function) => {
+  on = (taskName: string, handle: AnyFunction) => {
     const eventsMap = this.eventsMap
     const handleList = eventsMap[taskName] || []
     if (isFunc(handle)) {
@@ -36,7 +36,7 @@ class Events {
     }
   }
 
-  off = (taskName: string, handle?: Function) => {
+  off = (taskName: string, handle?: AnyFunction) => {
     const eventsMap = this.eventsMap || {}
     let handleList = eventsMap[taskName] || []
     if (isFunc(handle)) {
