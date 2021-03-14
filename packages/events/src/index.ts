@@ -2,9 +2,9 @@ import { isFunc } from 'ginlibs-type-check'
 
 class Events {
   private eventsMap: any = {}
-  private globalConfig: any = {}
+  private config: any = {}
   constructor(config?: any) {
-    this.globalConfig = config || {}
+    this.config = config || {}
   }
 
   on = (taskName: string, handle: AnyFunction) => {
@@ -20,15 +20,12 @@ class Events {
     }
   }
 
-  emit = async (taskName: string, ...arg: any[]): Promise<any> => {
+  emit = <T = any>(taskName: string, ...arg: any[]): T => {
     const eventsMap = this.eventsMap
     const handleList = eventsMap[taskName] || []
-    const res = await Promise.all(
-      handleList.map((handle) =>
-        handle.apply(null, [...arg, this.globalConfig])
-      )
+    const res = handleList.map((handle) =>
+      handle.apply(null, [...arg, this.config])
     )
-
     if (res.length <= 1) {
       return res[0]
     } else {
@@ -39,7 +36,7 @@ class Events {
   off = (taskName: string, handle?: AnyFunction) => {
     const eventsMap = this.eventsMap || {}
     let handleList = eventsMap[taskName] || []
-    if (isFunc(handle)) {
+    if (!isFunc(handle)) {
       eventsMap[taskName] = []
     } else {
       handleList = handleList.filter((eventFn) => {
@@ -47,6 +44,7 @@ class Events {
       })
       eventsMap[taskName] = handleList
     }
+    this.eventsMap = eventsMap
   }
 }
 
