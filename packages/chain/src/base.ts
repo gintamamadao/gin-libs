@@ -30,15 +30,31 @@ export class BaseChain {
     return null
   }
 
-  findPrevious(value: string | ((value: string) => boolean), cnt = 1) {
+  findNext(anchor: string | ((value: string) => boolean), cnt = 1) {
+    let curNode = this.find(anchor)
+    if (!curNode) {
+      return null
+    }
+    let loopCnt = 0
+    while (curNode.next && loopCnt < cnt) {
+      loopCnt++
+      curNode = curNode.next
+      if (loopCnt === cnt) {
+        return curNode
+      }
+    }
+    return null
+  }
+
+  findPrevious(anchor: string | ((value: string) => boolean), cnt = 1) {
     let curNode = this.head.next
     if (!curNode) {
       return null
     }
-    const vailCheck = isFunc(value)
-      ? value
+    const vailCheck = isFunc(anchor)
+      ? anchor
       : (nodeVale: string) => {
-          return nodeVale === value
+          return nodeVale === anchor
         }
     if (vailCheck(curNode.value)) {
       return null
@@ -69,5 +85,19 @@ export class BaseChain {
       values.push(curNode.value)
     }
     return values
+  }
+
+  checkLength() {
+    let len = 0
+    let curNode = this.head.next
+    if (!curNode) {
+      return len
+    }
+    while (curNode.next) {
+      curNode = curNode.next
+      len++
+    }
+    this.length = len
+    return len
   }
 }
