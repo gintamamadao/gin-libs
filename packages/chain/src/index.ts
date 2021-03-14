@@ -1,6 +1,8 @@
 import { ChainNode } from './node'
 import { push } from './push'
-import { find } from './find'
+import { insertAfter } from './insertAfter'
+import { insertBefore } from './insertBefore'
+import { remove } from './remove'
 
 class Chain {
   public head: ChainNode
@@ -9,7 +11,9 @@ class Chain {
     this.head = new ChainNode('__chain_head__')
   }
   public push: typeof push = push
-  public find: typeof find = find
+  public insertAfter: typeof insertAfter = insertAfter
+  public insertBefore: typeof insertBefore = insertBefore
+  public remove: typeof remove = remove
 }
 
 export default Chain

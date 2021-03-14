@@ -65,5 +65,8 @@
     "ts-jest": "^26.3.0",
     "tslib": "^2.0.0",
     "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "ginlibs-type-check": "^0.0.4"
   }
 }
