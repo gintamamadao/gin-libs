@@ -47,9 +47,11 @@ export const isFunc = <T = AnyFunction>(v: any): v is T => {
 }
 
 export const isPromise = <T = Promise<any>>(v: any): v is T => {
-  return (
-    v &&
-    (isObject(v) || isFunc(v) || (v as any) instanceof Promise) &&
-    isFunc(v.then)
-  )
+  return (v && isFunc(v.then)) || isThisType(v, 'Promise')
+}
+
+export const isThisType = (val: any, type: string) => {
+  const valType = Object.prototype.toString.call(val)
+  const trueType = valType.slice(8, valType.length - 1)
+  return type === trueType
 }
