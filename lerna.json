@@ -3,8 +3,7 @@
     "packages/*"
   ],
   "version": "independent",
-  "npmClient": "yarn",
-  "useWorkspaces": true,
+  "npmClient": "npm",
   "command": {
     "publish": {
       "allowBranch": "main",

@@ -33,6 +33,7 @@
     "@babel/core": "^7.11.0",
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@rollup/plugin-babel": "^5.1.0",
     "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^14.0.0",
@@ -41,6 +42,7 @@
     "@types/jest": "^26.0.10",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
+    "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.6.0",
     "eslint-config-prettier": "^6.11.0",
@@ -48,16 +50,20 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.1.4",
     "glob": "^7.1.6",
+    "husky": "^4.2.5",
     "jest": "^26.4.2",
     "lint-staged": "^10.4.2",
     "rimraf": "^3.0.2",
+    "lerna": "^3.22.1",
+    "prettier": "^2.0.5",
+    "react": "16.8.6",
     "rollup": "^2.23.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "ts-jest": "^26.3.0",
     "tslib": "^2.0.0",
-    "typescript": "^4.0.2"
-  },
-  "gitHead": "f7b9d1506930be3834c33124cd1f5dc3deaef646"
+    "typescript": "^4.0.2",
+    "@commitlint/cli": "^11.0.0"
+  }
 }
