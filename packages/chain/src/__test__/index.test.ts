@@ -76,4 +76,18 @@ describe('链表 Chain', () => {
     // expect(chain4.length).toBe(4)
     expect(chain4.checkLength()).toBe(4)
   })
+  test('链表 insertBefore', () => {
+    const chain5 = new Chain(['a'])
+    chain5.insertBefore('a1', 'a')
+    expect(chain5.getNodeValues()).toStrictEqual(
+      expect.objectContaining(['a1', 'a'])
+    )
+  })
+  test('链表 insertAfter', () => {
+    const chain5 = new Chain(['a'])
+    chain5.insertAfter('a2', 'a')
+    expect(chain5.getNodeValues()).toStrictEqual(
+      expect.objectContaining(['a', 'a2'])
+    )
+  })
 })

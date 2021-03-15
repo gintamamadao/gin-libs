@@ -51,7 +51,7 @@ class Plan {
       return !before && !after && itWeight >= weight
     })
     if (!anchorNode) {
-      this.eventChain.shift(name)
+      this.eventChain.unshift(name)
       return
     }
 
@@ -133,6 +133,20 @@ class Plan {
       this.eventChain.insertBefore(name, afterChildAncNode.value)
     } else {
       this.eventChain.push(name)
+    }
+  }
+
+  public getPlan() {
+    return this.eventChain.getNodeValues()
+  }
+
+  public async execPlan() {
+    const chain = this.eventChain
+    let eventNode = chain.getFirstNode()
+    while (eventNode) {
+      const eventName = eventNode.value
+      await this.eventsEmitt.emit(eventName)
+      eventNode = eventNode.next
     }
   }
 }
