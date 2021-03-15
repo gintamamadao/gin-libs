@@ -7,6 +7,7 @@ import { insertAfter } from './insertAfter'
 import { insertBefore } from './insertBefore'
 import { remove } from './remove'
 import { BaseChain } from './base'
+import { isArray } from 'ginlibs-type-check'
 
 class Chain extends BaseChain {
   public push: typeof push = push
@@ -16,6 +17,32 @@ class Chain extends BaseChain {
   public insertAfter: typeof insertAfter = insertAfter
   public insertBefore: typeof insertBefore = insertBefore
   public remove: typeof remove = remove
+
+  constructor(node?: ChainNode | string[]) {
+    super()
+    this.init(node)
+  }
+
+  public init(node?: ChainNode | string[]) {
+    if (isArray(node)) {
+      let value = node.shift()
+      while (value) {
+        this.push(value)
+        value = node.shift()
+      }
+      return
+    }
+
+    if (node && node.value) {
+      let curNode = node
+      this.push(node.value)
+      while (curNode.next) {
+        curNode = curNode.next
+        this.push(curNode.value)
+      }
+      return
+    }
+  }
 
   public clone() {
     let curNode = this.head.next
@@ -33,5 +60,7 @@ class Chain extends BaseChain {
     return newChain
   }
 }
+
+export { ChainNode }
 
 export default Chain
