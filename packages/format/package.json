@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-format",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -67,7 +67,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-type-check": "^0.0.5"
+    "ginlibs-type-check": "^0.0.6"
   },
   "gitHead": "d5d2e52c476194fd1e3ec5e0108ffedda5dfac19"
 }
