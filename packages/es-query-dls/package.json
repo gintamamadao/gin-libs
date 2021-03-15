@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-es-query-dls",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -67,8 +67,8 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-type-check": "^0.0.4",
-    "ginlibs-format": "^0.0.0",
-    "ginlibs-set-key": "^0.0.0"
+    "ginlibs-format": "^0.0.1",
+    "ginlibs-set-key": "^0.0.1",
+    "ginlibs-type-check": "^0.0.5"
   }
 }
