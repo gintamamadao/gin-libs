@@ -1,11 +1,10 @@
 import { BaseChain } from './base'
+import { ChainNode } from './node'
 
-export function unshift(this: BaseChain) {
-  const prevNode = this.head
-  const curNode = this.head.next
-  if (!curNode) {
-    return null
-  }
-  prevNode.next = curNode.next
-  return curNode
+export function unshift(this: BaseChain, value: string) {
+  const node = new ChainNode(value)
+  const nextNode = this.head.next
+  this.head.next = node
+  node.next = nextNode
+  return this
 }

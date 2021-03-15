@@ -11,5 +11,5 @@ export function pop(this: BaseChain) {
     curNode = curNode.next
   }
   prevNode.next = null
-  return this
+  return curNode
 }

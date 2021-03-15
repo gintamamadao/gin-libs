@@ -18,28 +18,32 @@ class Chain extends BaseChain {
   public insertBefore: typeof insertBefore = insertBefore
   public remove: typeof remove = remove
 
-  constructor(node?: ChainNode | string[]) {
+  constructor(node?: ChainNode | string[] | null) {
     super()
     this.init(node)
   }
 
-  public init(node?: ChainNode | string[]) {
+  public init(node?: ChainNode | string[] | null) {
+    if (!node) {
+      return
+    }
     if (isArray(node)) {
       let value = node.shift()
       while (value) {
         this.push(value)
         value = node.shift()
       }
+      this.checkLength()
       return
     }
 
     if (node && node.value) {
-      let curNode = node
-      this.push(node.value)
-      while (curNode.next) {
-        curNode = curNode.next
+      let curNode: any = node
+      while (curNode) {
         this.push(curNode.value)
+        curNode = curNode.next
       }
+      this.checkLength()
       return
     }
   }
@@ -57,6 +61,7 @@ class Chain extends BaseChain {
       cloneNode.next = new ChainNode(curNode.value)
       cloneNode = cloneNode.next
     }
+    newChain.checkLength()
     return newChain
   }
 }

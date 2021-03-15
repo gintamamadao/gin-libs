@@ -89,15 +89,20 @@ export class BaseChain {
 
   checkLength() {
     let len = 0
-    let curNode = this.head.next
+    let curNode = this.getFirstNode()
     if (!curNode) {
       return len
     }
+    len++
     while (curNode.next) {
       curNode = curNode.next
       len++
     }
     this.length = len
     return len
+  }
+
+  getFirstNode() {
+    return this.head.next
   }
 }
