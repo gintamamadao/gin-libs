@@ -13,9 +13,9 @@ class Plan {
   private eventsEmitt: Events
   private planInfoMap: Record<string, EventPlanInfo> = {}
 
-  constructor() {
-    this.eventChain = new Chain()
-    this.eventsEmitt = new Events()
+  constructor(chain?: Chain, events?: Events) {
+    this.eventChain = chain || new Chain()
+    this.eventsEmitt = events || new Events()
   }
 
   public addToPlan(info: EventPlanInfo) {
@@ -136,8 +136,27 @@ class Plan {
     }
   }
 
+  public getPlanInfo() {
+    const plan = this.getPlan()
+    return plan.map((name) => {
+      return this.planInfoMap[name]
+    })
+  }
+
   public getPlan() {
     return this.eventChain.getNodeValues()
+  }
+
+  public clone() {
+    return new Plan(this.eventChain.clone(), this.eventsEmitt)
+  }
+
+  public reGeneratePlan() {
+    this.eventChain = new Chain()
+    this.eventsEmitt = new Events()
+    for (const key of Object.keys(this.planInfoMap)) {
+      this.addToPlan(this.planInfoMap[key])
+    }
   }
 
   public async execPlan() {
