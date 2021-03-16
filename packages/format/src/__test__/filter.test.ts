@@ -72,5 +72,35 @@ describe('清除键值为空对象或者空数组的键', () => {
       c: [],
     })
     expect(JSON.stringify(testData1)).toBe('{"a":0}')
+
+    const testData2 = filterNoKeyObj({
+      a: 0,
+      b: {
+        c: [],
+      },
+    })
+    expect(JSON.stringify(testData2)).toBe('{"a":0,"b":{}}')
+
+    const testData3 = filterNoKeyObj(
+      {
+        a: 0,
+        b: {
+          c: [],
+        },
+      },
+      2
+    )
+    expect(JSON.stringify(testData3)).toBe('{"a":0}')
+
+    const testData4 = filterNoKeyObj(
+      {
+        a: 0,
+        b: {
+          c: [{}],
+        },
+      },
+      3
+    )
+    expect(JSON.stringify(testData4)).toBe('{"a":0}')
   })
 })

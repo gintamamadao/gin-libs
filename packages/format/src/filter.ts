@@ -20,12 +20,13 @@ export const filterNilKey = (data: any) => {
   return data
 }
 
-export const filterNoKeyObj = (data: any) => {
+export const filterNoKeyObj = (data: any, cnt = 1) => {
+  let newData = data
   if (!isObject(data) && !isArray(data)) {
     return data
   }
   if (isArray(data)) {
-    return data
+    newData = data
       .filter((it) => {
         if (!isObject(it) && !isArray(it)) {
           return true
@@ -39,25 +40,31 @@ export const filterNoKeyObj = (data: any) => {
         if (!isObject(it) && !isArray(it)) {
           return it
         }
-        return filterNoKeyObj(it)
+        return filterNoKeyObj(it, 1)
       })
   }
-  for (const key of Object.keys(data)) {
-    const value = data[key]
-    if (!isObject(value) && !isArray(value)) {
-      continue
-    }
-    if (isObject(value) && Object.keys(value).length < 1) {
-      delete data[key]
-      continue
-    }
-    if (isArray(value) && it.length < 1) {
-      delete data[key]
-      continue
-    }
-    if (isObject(value) || isArray(it)) {
-      data[key] = filterNoKeyObj(it)
+  if (isObject(data)) {
+    newData = { ...data }
+    for (const key of Object.keys(newData)) {
+      const value = newData[key]
+      if (!isObject(value) && !isArray(value)) {
+        continue
+      }
+      if (isObject(value) && Object.keys(value).length < 1) {
+        delete newData[key]
+        continue
+      }
+      if (isArray(value) && value.length < 1) {
+        delete newData[key]
+        continue
+      }
+      newData[key] = filterNoKeyObj(value, 1)
     }
   }
-  return data
+
+  if (cnt - 1 > 0) {
+    return filterNoKeyObj(newData, cnt - 1)
+  }
+
+  return newData
 }
