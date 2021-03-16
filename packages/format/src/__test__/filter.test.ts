@@ -1,4 +1,4 @@
-import { filterNilKey } from '../index'
+import { filterNilKey, filterNoKeyObj } from '../filter'
 
 describe('清除键值为空的键', () => {
   test('清除 null & undefined', async () => {
@@ -61,5 +61,16 @@ describe('清除键值为空的键', () => {
         },
       ])
     )
+  })
+})
+
+describe('清除键值为空对象或者空数组的键', () => {
+  test('清除空对象或者空数组', async () => {
+    const testData1 = filterNoKeyObj({
+      a: 0,
+      b: {},
+      c: [],
+    })
+    expect(JSON.stringify(testData1)).toBe('{"a":0}')
   })
 })
