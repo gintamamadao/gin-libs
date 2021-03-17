@@ -1,4 +1,4 @@
-import { filterNilKey, filterNoKeyObj } from '../filter'
+import { filterNilKey, filterNoKeyObj } from '../index'
 
 describe('清除键值为空的键', () => {
   test('清除 null & undefined', async () => {

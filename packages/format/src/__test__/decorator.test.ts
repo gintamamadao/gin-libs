@@ -1,5 +1,4 @@
-import { Exclude, Expose } from '../decorator'
-import { transByClass, reverseTransByClass } from '../transform'
+import { Exclude, Expose, transByClass, reverseTransByClass } from '../index'
 
 describe('排除保留属性 key', () => {
   test('只保留属性 key', () => {
