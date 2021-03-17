@@ -1,6 +1,6 @@
 import { isNilVal, isArray, isObject } from 'ginlibs-type-check'
 
-export const filterNilKey = (data: any) => {
+export function filterNilKey(data: any) {
   if (!isObject(data) && !isArray(data)) {
     return data
   }
@@ -20,7 +20,7 @@ export const filterNilKey = (data: any) => {
   return data
 }
 
-export const filterNoKeyObj = (data: any, cnt = 1) => {
+export function filterNoKeyObj(data: any, cnt = 1) {
   let newData = data
   if (!isObject(data) && !isArray(data)) {
     return data
