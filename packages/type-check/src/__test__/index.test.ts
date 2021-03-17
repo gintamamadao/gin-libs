@@ -4,7 +4,7 @@ import {
   isBoolean,
   isObject,
   isNilVal,
-  isDate,
+  isNull,
   isNumber,
   isNumeric,
   isFunc,
@@ -61,15 +61,6 @@ describe('判断是否字是空值：isNilVal', () => {
   })
 })
 
-describe('判断是否日期对象：isDate', () => {
-  test('true', () => {
-    expect(isDate(new Date())).toBe(true)
-  })
-  test('false', () => {
-    expect(isDate({})).toBe(false)
-  })
-})
-
 describe('判断是否数字：isNumber', () => {
   test('true', () => {
     expect(isNumber(1)).toBe(true)
@@ -116,6 +107,12 @@ describe('判断是否函数：isFunc', () => {
 describe('判断是否是 Promise：isPromise', () => {
   test('true', () => {
     expect(isPromise(new Promise(() => {}))).toBe(true)
+    expect(isPromise((async function () {})())).toBe(true)
+    expect(
+      isPromise({
+        then: () => {},
+      })
+    ).toBe(true)
   })
   test('false', () => {
     expect(isPromise(() => {})).toBe(false)
@@ -129,6 +126,21 @@ describe('判断是否是 undefined：isUndefined', () => {
   })
   test('false', () => {
     expect(isUndefined(null)).toBe(false)
+    expect(isUndefined(0)).toBe(false)
+    expect(isUndefined('')).toBe(false)
+    expect(isUndefined(NaN)).toBe(false)
+  })
+})
+
+describe('判断是否是 null：isNull', () => {
+  test('true', () => {
+    expect(isNull(null)).toBe(true)
+  })
+  test('false', () => {
+    expect(isNull(undefined)).toBe(false)
+    expect(isUndefined(0)).toBe(false)
+    expect(isUndefined('')).toBe(false)
+    expect(isUndefined(NaN)).toBe(false)
   })
 })
 
