@@ -34,6 +34,23 @@ export function transByClass<T = any>(
   return newData
 }
 
+export function getTransKey(target: any, key: string, reverse = false): string {
+  const exposeItems: ExposeItem[] = target.prototype.$$exposeItems
+  if (!isArray(exposeItems)) {
+    return ''
+  }
+  for (const it of exposeItems) {
+    const { from, to } = it
+    if (!reverse && from === key) {
+      return to
+    }
+    if (reverse && to === key) {
+      return from
+    }
+  }
+  return ''
+}
+
 export function reverseTransByClass<T = any>(
   target: any,
   data: Record<string, any>

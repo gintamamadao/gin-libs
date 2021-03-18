@@ -1,4 +1,10 @@
-import { Exclude, Expose, transByClass, reverseTransByClass } from '../index'
+import {
+  Exclude,
+  Expose,
+  transByClass,
+  reverseTransByClass,
+  getTransKey,
+} from '../index'
 
 describe('排除保留属性 key', () => {
   test('只保留属性 key', () => {
@@ -38,6 +44,8 @@ describe('排除保留属性 key', () => {
         b: 1,
       })
     )
+    expect(getTransKey(Example1, 'b')).toBe('a')
+    expect(getTransKey(Example1, 'a', true)).toBe('b')
   })
   test('只排除属性 key', () => {
     class Example1 {
