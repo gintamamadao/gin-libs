@@ -7,10 +7,16 @@ export interface ExcludeInfo {
   when?: string
 }
 
+export enum DecoratorPropKeys {
+  exclude = '$$excludeKeys',
+  expose = '$$exposeItems',
+}
+
 export function Exclude(options: ExcludeOptions = {}) {
   return function (target: any, propertyName?: string | symbol) {
-    target.$$excludeKeys = (target.$$excludeKeys || []) as ExcludeInfo[]
-    target.$$excludeKeys.push({
+    const excludeKey = DecoratorPropKeys.exclude
+    target[excludeKey] = target[excludeKey] || []
+    target[excludeKey].push({
       key: propertyName,
       when: options.when,
     })
@@ -28,8 +34,9 @@ export interface ExposeItem {
 
 export function Expose(options: ExposeOptions = {}) {
   return function (target: any, propertyName?: string | symbol) {
-    target.$$exposeItems = (target.$$exposeItems || []) as ExposeItem[]
-    target.$$exposeItems.push({
+    const exposeKey = DecoratorPropKeys.expose
+    target[exposeKey] = target[exposeKey] || []
+    target[exposeKey].push({
       to: propertyName,
       from: options.name || propertyName,
     })

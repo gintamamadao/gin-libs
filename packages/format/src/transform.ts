@@ -1,5 +1,9 @@
 import { isArray, isFunc } from 'ginlibs-type-check'
-import { ExposeItem, ExcludeInfo } from './decorator'
+import { ExposeItem, ExcludeInfo, DecoratorPropKeys } from './decorator'
+
+export function getProto(obj: any) {
+  return isFunc(obj) ? obj.prototype : obj.__proto__
+}
 
 export function transByClass<T = any>(
   target: any,
@@ -7,9 +11,9 @@ export function transByClass<T = any>(
   type?: string
 ): T {
   let newData: any = {}
-  const proto = isFunc(target) ? target.prototype : target.__proto__
-  const exposeItems: ExposeItem[] = proto.$$exposeItems
-  const excludeKeys: ExcludeInfo[] = proto.$$excludeKeys
+  const proto = getProto(target)
+  const exposeItems: ExposeItem[] = proto[DecoratorPropKeys.expose]
+  const excludeKeys: ExcludeInfo[] = proto[DecoratorPropKeys.exclude]
 
   if (isArray(exposeItems)) {
     for (const it of exposeItems) {
@@ -36,8 +40,8 @@ export function transByClass<T = any>(
 }
 
 export function getTransKey(target: any, key: string, reverse = false): string {
-  const proto = isFunc(target) ? target.prototype : target.__proto__
-  const exposeItems: ExposeItem[] = proto.$$exposeItems
+  const proto = getProto(target)
+  const exposeItems: ExposeItem[] = proto[DecoratorPropKeys.expose]
   if (!isArray(exposeItems)) {
     return ''
   }
@@ -58,8 +62,8 @@ export function reverseTransByClass<T = any>(
   data: Record<string, any>
 ): T {
   const newData: any = {}
-  const proto = isFunc(target) ? target.prototype : target.__proto__
-  const exposeItems: ExposeItem[] = proto.$$exposeItems
+  const proto = getProto(target)
+  const exposeItems: ExposeItem[] = proto[DecoratorPropKeys.expose]
   if (isArray(exposeItems)) {
     for (const it of exposeItems) {
       const { from, to } = it
