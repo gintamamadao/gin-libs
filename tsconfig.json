@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "noImplicitThis": false,
     "lib": ["es5", "es6", "dom", "es7", "esnext"],
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strict": true
   }
 }

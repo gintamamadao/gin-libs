@@ -10,7 +10,7 @@ describe('排除保留属性 key', () => {
   test('只保留属性 key', () => {
     class Example1 {
       @Expose()
-      a?: string
+      a: string
     }
     expect(
       transByClass(Example1, {
@@ -28,7 +28,7 @@ describe('排除保留属性 key', () => {
       @Expose({
         name: 'b',
       })
-      a?: string
+      a: string
     }
     const transData = transByClass(Example1, {
       a: 0,
@@ -50,7 +50,7 @@ describe('排除保留属性 key', () => {
   test('只排除属性 key', () => {
     class Example1 {
       @Exclude()
-      a?: string
+      a: string
     }
     expect(
       transByClass(Example1, {
