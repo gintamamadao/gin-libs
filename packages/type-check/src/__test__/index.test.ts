@@ -10,6 +10,9 @@ import {
   isFunc,
   isPromise,
   isUndefined,
+  isDate,
+  isEmptyObject,
+  isEmptyArray,
   isThisType,
 } from '../index'
 
@@ -22,12 +25,23 @@ describe('判断是否字符串：isString', () => {
   })
 })
 
-describe('判断是否字数组：isArray', () => {
+describe('判断是否数组：isArray', () => {
   test('true', () => {
     expect(isArray([])).toBe(true)
+    expect(isArray([1])).toBe(true)
   })
   test('false', () => {
     expect(isArray({})).toBe(false)
+  })
+})
+
+describe('判断是否空数组：isEmptyArray', () => {
+  test('true', () => {
+    expect(isEmptyArray([])).toBe(true)
+  })
+  test('false', () => {
+    expect(isEmptyArray({})).toBe(false)
+    expect(isEmptyArray([1])).toBe(false)
   })
 })
 
@@ -43,9 +57,28 @@ describe('判断是否布尔型：isBoolean', () => {
 describe('判断是否对象：isObject', () => {
   test('true', () => {
     expect(isObject({})).toBe(true)
+    expect(
+      isObject({
+        a: 1,
+      })
+    ).toBe(true)
   })
   test('false', () => {
     expect(isObject([])).toBe(false)
+  })
+})
+
+describe('判断是否空对象：isEmptyObject', () => {
+  test('true', () => {
+    expect(isEmptyObject({})).toBe(true)
+  })
+  test('false', () => {
+    expect(isEmptyObject([])).toBe(false)
+    expect(
+      isEmptyObject({
+        a: 1,
+      })
+    ).toBe(false)
   })
 })
 
@@ -152,5 +185,16 @@ describe('判断是否是输入类型：isThisType', () => {
   })
   test('false', () => {
     expect(isThisType([], 'Object')).toBe(false)
+  })
+})
+
+describe('判断是否日期对象：isDate', () => {
+  test('true', () => {
+    expect(isDate(new Date())).toBe(true)
+    expect(isDate(new Date(1))).toBe(true)
+  })
+  test('false', () => {
+    expect(isDate({})).toBe(false)
+    expect(isDate(new Date('a'))).toBe(false)
   })
 })

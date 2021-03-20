@@ -26,8 +26,16 @@ export function isObject<T = Record<string, any>>(v: any): v is T {
   return isThisType(v, 'Object')
 }
 
+export function isEmptyObject<T = Record<string, any>>(v: any): v is T {
+  return isThisType(v, 'Object') && Object.keys(v).length <= 0
+}
+
 export function isArray<T = any[]>(v: any): v is T {
   return Array.isArray(v)
+}
+
+export function isEmptyArray<T = any[]>(v: any): v is T {
+  return Array.isArray(v) && v.length <= 0
 }
 
 export function isNilVal(v: any, ...args: any[]): v is undefined | null {
@@ -47,7 +55,11 @@ export function isFunc<T = AnyFunction>(v: any): v is T {
 }
 
 export function isPromise<T = Promise<any>>(v: any): v is T {
-  return (v && isFunc(v.then)) || isThisType(v, 'Promise')
+  return v && isFunc(v.then)
+}
+
+export function isDate<T = Promise<any>>(v: any): v is T {
+  return isThisType(v, 'Date') && isNumber(v.getTime())
 }
 
 export function isThisType(val: any, type: string) {
