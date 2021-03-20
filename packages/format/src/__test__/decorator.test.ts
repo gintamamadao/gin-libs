@@ -12,8 +12,19 @@ describe('排除保留属性 key', () => {
       @Expose()
       a: string
     }
+    const example1 = new Example1()
     expect(
       transByClass(Example1, {
+        a: 0,
+        b: 1,
+      })
+    ).toStrictEqual(
+      expect.objectContaining({
+        a: 0,
+      })
+    )
+    expect(
+      transByClass(example1, {
         a: 0,
         b: 1,
       })
