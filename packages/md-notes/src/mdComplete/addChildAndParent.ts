@@ -1,8 +1,8 @@
 import fromMarkdown from "mdast-util-from-markdown";
 import toMarkdown from "mdast-util-to-markdown";
-import fsUtil from "../utils/fsUtil";
-import { isArray } from "../utils/typeUtil";
-import { renderTplFile } from "../utils/tplUtil";
+import fsUtil from "ginlibs-file-util";
+import { isArray } from "ginlibs-type-check";
+import { renderTplFile } from "ginlibs-template";
 import {
   getHDTLEntryList,
   getHDTLEntryListChldObj,

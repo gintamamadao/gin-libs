@@ -1,5 +1,5 @@
 import { LiftoffEnv } from "liftoff";
-import fsUtil from "../utils/fsUtil";
+import fsUtil from "ginlibs-file-util";
 import { addChildAndParent } from "./addChildAndParent";
 
 export const watchCompleteChange = (liftEnv: LiftoffEnv) => {

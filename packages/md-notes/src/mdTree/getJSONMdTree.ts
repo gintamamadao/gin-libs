@@ -1,5 +1,5 @@
 import fromMarkdown from "mdast-util-from-markdown";
-import fsUtil from "../utils/fsUtil";
+import fsUtil from "ginlibs-file-util";
 import {
   getEntryLink,
   getEntryName,
