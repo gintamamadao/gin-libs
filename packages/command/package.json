@@ -68,6 +68,8 @@
   },
   "dependencies": {
     "ginlibs-type-check": "^0.0.8",
+    "shelljs": "^0.8.4",
+    "ginlibs-log": "^0.0.0",
     "chalk": "^4.1.0"
   }
 }

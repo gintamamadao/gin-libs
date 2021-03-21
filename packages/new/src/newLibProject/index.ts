@@ -1,16 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { join } from 'path'
-import { LiftoffEnv } from 'liftoff'
-import { renderTplFile, PandaArgv, fsUtil } from '@credit/cli-helper'
+import fsUtil from 'ginlibs-file-util'
+import { renderTplFile } from 'ginlibs-template'
 
 const TPL_FILE_DIR = join(__dirname, './tplFile/plugin-tpl')
 
-const genPluginTpl = (
-  argv: PandaArgv = {} as any,
-  liftEnv: LiftoffEnv = {} as any
-) => {
-  const { pkg_name: pkgName } = argv
-  const { cwd } = liftEnv
+const newLibProject = (pkgName: string, cwd: string) => {
   const pkgDir = join(cwd, `packages/${pkgName}`)
   const srcDir = join(pkgDir, '/src')
   const indexPath = join(srcDir, 'index.ts')
@@ -36,4 +30,4 @@ const genPluginTpl = (
   fsUtil.write(tsCfgPath, tsCfgCont)
 }
 
-export default genPluginTpl
+export default newLibProject

@@ -1,6 +1,6 @@
 import { spawnSync, SpawnOptions, spawn } from 'child_process'
 import shelljs from 'shelljs'
-import log from './logText'
+import log from 'ginlibs-log'
 
 export const spawnInherit = (
   command: string,
