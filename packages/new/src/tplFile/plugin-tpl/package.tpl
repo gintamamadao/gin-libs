@@ -4,7 +4,7 @@
   "description": "> TODO: description",
   "author": "yuan.li <yuan.li@shopee.com>",
   "homepage": "",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/{{{pkgName}}}.js",
   "types": "lib/index.d.ts",
   "directories": {

@@ -22,7 +22,7 @@
     "mdmd-pro": "./bin/cli.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gintamamadao/gin-libs/issues"
   },
