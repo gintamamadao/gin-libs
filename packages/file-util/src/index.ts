@@ -3,6 +3,7 @@ import fs from 'fs'
 import shelljs from 'shelljs'
 import glob from 'glob'
 import chokidar, { WatchOptions } from 'chokidar'
+import os from 'os'
 
 class NodeFile {
   exist = (filePath: string) => {
@@ -57,6 +58,9 @@ class NodeFile {
   }
   watch = (cwd: string, option?: WatchOptions) => {
     return chokidar.watch(cwd, option)
+  }
+  tmpdir = () => {
+    return os.tmpdir()
   }
 }
 
