@@ -26,14 +26,14 @@ const dls = new EsQueryDls().must
       keyword: true,
     },
   })
-  .toQuery('fruit_es', 'type')
+  .toQuery('fruit_es', 'fruit_type')
 
 console.log(dls)
 
 /**
 {
-  "index": "test",
-  "type": "type",
+  "index": "fruit_es",
+  "type": "fruit_type",
   "body": {
     "query": {
       "bool": {
