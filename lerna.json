@@ -7,9 +7,7 @@
   "command": {
     "publish": {
       "allowBranch": "main",
-      "ignoreChanges": [
-        "*.md"
-      ],
+      "ignoreChanges": [],
       "message": "chore: npm publish"
     }
   },
