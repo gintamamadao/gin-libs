@@ -65,6 +65,7 @@ describe('判断是否对象：isObject', () => {
   })
   test('false', () => {
     expect(isObject([])).toBe(false)
+    expect(isObject(null)).toBe(false)
   })
 })
 
@@ -105,6 +106,7 @@ describe('判断是否数字：isNumber', () => {
     expect(isNumber(NaN)).toBe(false)
     expect(isNumber(Infinity)).toBe(false)
     expect(isNumber([])).toBe(false)
+    expect(isNumber('1')).toBe(false)
     expect(isNumber('')).toBe(false)
   })
 })
@@ -171,9 +173,9 @@ describe('判断是否是 null：isNull', () => {
   })
   test('false', () => {
     expect(isNull(undefined)).toBe(false)
-    expect(isUndefined(0)).toBe(false)
-    expect(isUndefined('')).toBe(false)
-    expect(isUndefined(NaN)).toBe(false)
+    expect(isNull(0)).toBe(false)
+    expect(isNull('')).toBe(false)
+    expect(isNull(NaN)).toBe(false)
   })
 })
 
