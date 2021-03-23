@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-md-notes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./bin/cli.js",
   "types": "./bin/index.d.ts",
@@ -30,6 +30,11 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
+    "ginlibs-file-util": "^0.0.1",
+    "ginlibs-log": "^0.0.1",
+    "ginlibs-template": "^0.0.1",
+    "ginlibs-type-check": "^0.0.11",
+    "ginlibs-utils": "^0.0.3",
     "glob": "^7.1.6",
     "interpret": "^2.2.0",
     "liftoff": "^3.1.0",
@@ -39,12 +44,7 @@
     "prettier": "^2.2.1",
     "shelljs": "^0.8.4",
     "v8flags": "^3.2.0",
-    "vfile-reporter": "^6.0.2",
-    "ginlibs-type-check": "^0.0.10",
-    "ginlibs-file-util": "^0.0.0",
-    "ginlibs-template": "^0.0.0",
-    "ginlibs-log": "^0.0.0",
-    "ginlibs-utils": "^0.0.2"
+    "vfile-reporter": "^6.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.4",

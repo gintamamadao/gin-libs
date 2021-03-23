@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-git-util",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -67,10 +67,10 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-type-check": "^0.0.8",
-    "ginlibs-file-util": "^0.0.0",
     "download-git-repo": "^3.0.2",
-    "ginlibs-log": "^0.0.0"
+    "ginlibs-file-util": "^0.0.1",
+    "ginlibs-log": "^0.0.1",
+    "ginlibs-type-check": "^0.0.8"
   },
   "gitHead": "d5d2e52c476194fd1e3ec5e0108ffedda5dfac19"
 }
