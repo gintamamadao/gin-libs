@@ -1,7 +1,7 @@
 {
   "name": "ginlibs-type-check",
   "version": "0.0.11",
-  "description": "",
+  "description": "检查数据类型的工具函数",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
@@ -18,7 +18,12 @@
     "commit": "git-cz",
     "pub": "lerna publish"
   },
-  "keywords": [],
+  "keywords": [
+    "verify",
+    "type",
+    "validate",
+    "check"
+  ],
   "author": "gintamamadao",
   "license": "MIT",
   "repository": {
@@ -65,6 +70,5 @@
     "ts-jest": "^26.3.0",
     "tslib": "^2.0.0",
     "typescript": "^4.0.2"
-  },
-  "gitHead": "d5d2e52c476194fd1e3ec5e0108ffedda5dfac19"
+  }
 }
