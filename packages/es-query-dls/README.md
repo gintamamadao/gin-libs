@@ -26,7 +26,7 @@ const dls = new EsQueryDls().must
       keyword: true,
     },
   })
-  .toQuery('fruit_es')
+  .toQuery('fruit_es', 'type')
 
 console.log(dls)
 
@@ -40,7 +40,7 @@ console.log(dls)
         "must": [
           {
             "term": {
-              "a.keyword": "0"
+              "name.keyword": "apple"
             }
           }
         ]

@@ -11,7 +11,6 @@ export interface TermParamsItem {
   keyword?: boolean
 }
 
-
 export interface TermParams {
   [p: string]: number | string | number[] | string[] | TermParamsItem
 }
@@ -47,8 +46,10 @@ export class LeafClauses<T = any> {
       let queryKey = key
       let queryValue = value
       let queryType = 'term'
-      if (isObject<TermParamsItem>(value) && value.keyword) {
-        queryKey = `${queryKey}.keyword`
+      if (isObject<TermParamsItem>(value)) {
+        if (value.keyword) {
+          queryKey = `${queryKey}.keyword`
+        }
         queryValue = value.value
       }
       if (isArray(queryValue)) {

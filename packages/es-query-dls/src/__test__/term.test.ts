@@ -12,6 +12,11 @@ describe('es query dls build', () => {
       },
     }
   }
+  const getMustDls = (data) => {
+    return getBaseDls({
+      must: data,
+    })
+  }
   test('must.term', async () => {
     const dls = new EsQueryDls().must
       .term({
@@ -22,25 +27,43 @@ describe('es query dls build', () => {
       .toQuery('test')
     expect(dls).toStrictEqual(
       expect.objectContaining(
-        getBaseDls({
-          must: [
-            {
-              term: {
-                a: 0,
-              },
+        getMustDls([
+          {
+            term: {
+              a: 0,
             },
-            {
-              term: {
-                b: 1,
-              },
+          },
+          {
+            term: {
+              b: 1,
             },
-            {
-              terms: {
-                c: [2, 3],
-              },
+          },
+          {
+            terms: {
+              c: [2, 3],
             },
-          ],
-        })
+          },
+        ])
+      )
+    )
+  })
+  test('must.term - object', async () => {
+    const dls = new EsQueryDls().must
+      .term({
+        a: {
+          value: '0',
+        },
+      })
+      .toQuery('test')
+    expect(dls).toStrictEqual(
+      expect.objectContaining(
+        getMustDls([
+          {
+            term: {
+              a: '0',
+            },
+          },
+        ])
       )
     )
   })
@@ -55,15 +78,13 @@ describe('es query dls build', () => {
       .toQuery('test')
     expect(dls).toStrictEqual(
       expect.objectContaining(
-        getBaseDls({
-          must: [
-            {
-              term: {
-                'a.keyword': '0',
-              },
+        getMustDls([
+          {
+            term: {
+              'a.keyword': '0',
             },
-          ],
-        })
+          },
+        ])
       )
     )
   })
