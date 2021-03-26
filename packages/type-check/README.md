@@ -33,7 +33,7 @@ isNumeric('a') // false
 
 ## API
 
-### `isString`
+### `isString(val)`
 
 > 判断是否是字符串
 
@@ -42,7 +42,7 @@ isString('1') // true
 isString('') // true
 ```
 
-### `isBoolean`
+### `isBoolean(val)`
 
 > 判断是否是布尔值
 
@@ -51,7 +51,7 @@ isBoolean(false) // true
 isBoolean(0) // false
 ```
 
-### `isNumber`
+### `isNumber(val)`
 
 > 判断是否是数字
 
@@ -62,7 +62,7 @@ isNumber(NaN) // false
 isNumber(Infinity) // false
 ```
 
-### `isNumeric`
+### `isNumeric(val)`
 
 > 判断是否是数字字符串
 
@@ -74,7 +74,7 @@ isNumeric('-1.2e1') // true
 isNumeric('a') // false
 ```
 
-### `isNull`
+### `isNull(val)`
 
 > 判断是否是 null
 
@@ -84,7 +84,7 @@ isNull(undefined) // false
 isNull(0) // false
 ```
 
-### `isNilVal`
+### `isNilVal(val)`
 
 > 判断是否是 null 或者 undefined
 
@@ -95,7 +95,7 @@ isNilVal(0) // false
 isNilVal('') // false
 ```
 
-### `isArray`
+### `isArray(val)`
 
 > 判断是否是数组
 
@@ -104,7 +104,7 @@ isArray([]) // true
 isArray({}) // false
 ```
 
-### `isObject`
+### `isObject(val)`
 
 > 判断是否是对象
 
@@ -114,7 +114,7 @@ isObject([]) // false
 isObject(null) // false
 ```
 
-### `isFunc`
+### `isFunc(val)`
 
 > 判断是否是函数
 
@@ -123,7 +123,7 @@ isFunc(() => {}) // true
 isFunc({}) // false
 ```
 
-### `isPromise`
+### `isPromise(val)`
 
 > 判断是否是 Promise 对象
 
@@ -133,11 +133,11 @@ isPromise(()=>{}) // false
 isPromise({}) // false
 ```
 
-### `isDate`
+### `isDate(val)`
 
 > 判断是否是有效的 Date 对象
 
 ```js
 isDate(new Date(1))) // true
-isDate(isDate(new Date('a'))) // false
+isDate(new Date('a')) // false
 ```
