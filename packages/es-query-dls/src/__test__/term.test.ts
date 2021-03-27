@@ -88,4 +88,46 @@ describe('es query dls build', () => {
       )
     )
   })
+  test('must.like', async () => {
+    const dls = new EsQueryDls().must
+      .like({
+        a: 'a',
+      })
+      .toQuery('test')
+    expect(dls).toStrictEqual(
+      expect.objectContaining(
+        getMustDls([
+          {
+            wildcard: {
+              'a.keyword': '*a*',
+            },
+          },
+        ])
+      )
+    )
+  })
+  test('must.range', async () => {
+    const dls = new EsQueryDls().must
+      .range({
+        a: {
+          gt: 0,
+          lt: 10,
+        },
+      })
+      .toQuery('test')
+    expect(dls).toStrictEqual(
+      expect.objectContaining(
+        getMustDls([
+          {
+            range: {
+              a: {
+                gt: 0,
+                lt: 10,
+              },
+            },
+          },
+        ])
+      )
+    )
+  })
 })
