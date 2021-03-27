@@ -116,7 +116,7 @@ new EsQueryDls().must.like({
   "must": [
     {
       "wildcard": {
-        "a.keyword": "*apple*"
+        "name.keyword": "*apple*"
       }
     }
   ]
