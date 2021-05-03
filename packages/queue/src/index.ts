@@ -1,6 +1,7 @@
 import { isFunc } from 'ginlibs-type-check'
-import Lock from 'ginlibs-lock'
+import { Lock, AsyncLock } from 'ginlibs-lock'
 
+const alock = new AsyncLock()
 class EventQueue {
   private eventList: AnyFunction[] = []
   private lockKey = 'pause'
@@ -31,7 +32,7 @@ class EventQueue {
 
   public add = (fn: AnyFunction, delay = 0) => {
     const event = async () => {
-      await this.lock.sleep(delay)
+      await alock.lockTime(delay)
       return await fn()
     }
     this.eventList.push(event)
