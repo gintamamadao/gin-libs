@@ -1,4 +1,4 @@
-import Lock from '../index'
+import { Lock, AsyncLock } from '../index'
 
 export const sleep = (time = 0) => {
   return new Promise<void>((reslove) => {
@@ -9,9 +9,8 @@ export const sleep = (time = 0) => {
 }
 
 describe('上锁函数', () => {
-  const l = new Lock()
-
-  test('上锁', async () => {
+  test('同步上锁', async () => {
+    const l = new Lock()
     l.lock('test1')
     expect(l.isLocked('test1')).toBe(true)
     l.unLock('test1')
@@ -21,18 +20,35 @@ describe('上锁函数', () => {
     expect(l.isLocked('test2')).toBe(true)
     unLock2()
     expect(l.isLocked('test2')).toBe(false)
+  })
+
+  test('异步上锁', async () => {
+    const al = new AsyncLock()
 
     let a = 'a'
     setTimeout(() => {
-      l.break()
       a += 'c'
-    }, 500)
+      al.unLock()
+    }, 200)
 
     setTimeout(() => {
       a += 'b'
-    }, 100)
-    await l.blocking()
+    }, 30)
+
+    await al.getLock()
 
     expect(a).toBe('abc')
+  })
+
+  test('异步上锁2', async () => {
+    const al = new AsyncLock()
+
+    setTimeout(() => {
+      al.unLock('a2')
+    }, 200)
+
+    const str = await al.getLock()
+
+    expect(str).toBe('a2')
   })
 })
