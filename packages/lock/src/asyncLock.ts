@@ -18,11 +18,9 @@ export class AsyncLock {
   }
 
   public lockTime = (time: number) => {
-    this.lock()
-    setTimeout(() => {
-      this.resolve()
-    }, time)
-    return this.promise
+    return new Promise((resolve) => {
+      setTimeout(resolve, time)
+    })
   }
 
   public unLock = (params?: any) => {
