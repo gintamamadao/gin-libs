@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "ginlibs-lock": "^0.0.6",
-    "ginlibs-type-check": "^0.0.8"
+    "ginlibs-type-check": "^0.0.8",
+    "ginlibs-utils": "^0.0.4"
   }
 }
