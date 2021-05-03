@@ -17,6 +17,14 @@ export class AsyncLock {
     return this.promise
   }
 
+  public lockTime = (time: number) => {
+    this.lock()
+    setTimeout(() => {
+      this.resolve()
+    }, time)
+    return this.promise
+  }
+
   public unLock = (params?: any) => {
     isFunc(this.resolve) && this.resolve(params)
     this.resolve = noop

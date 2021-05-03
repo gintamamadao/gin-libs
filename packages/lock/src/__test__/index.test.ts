@@ -51,4 +51,23 @@ describe('上锁函数', () => {
 
     expect(str).toBe('a2')
   })
+
+  test('异步时间', async () => {
+    const al = new AsyncLock()
+
+    let a = 'a'
+    setTimeout(() => {
+      a += 'b'
+    }, 90)
+
+    setTimeout(() => {
+      a += 'c'
+    }, 180)
+
+    await al.lockTime(100)
+    expect(a).toBe('ab')
+
+    await al.lockTime(200)
+    expect(a).toBe('abc')
+  })
 })
