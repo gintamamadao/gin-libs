@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-new",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -66,8 +66,8 @@
   },
   "dependencies": {
     "@types/glob": "^7.1.3",
-    "ginlibs-file-util": "^0.0.3",
-    "ginlibs-template": "^0.0.3",
+    "ginlibs-file-util": "^0.0.4",
+    "ginlibs-template": "^0.0.4",
     "ginlibs-type-check": "^0.0.8",
     "shelljs": "^0.8.4"
   }
