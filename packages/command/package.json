@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-command",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
-    "ginlibs-log": "^0.0.1",
+    "ginlibs-log": "^0.0.2",
     "ginlibs-type-check": "^0.0.8",
     "shelljs": "^0.8.4"
   }

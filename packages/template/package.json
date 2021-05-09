@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -66,7 +66,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-file-util": "^0.0.1",
+    "ginlibs-file-util": "^0.0.2",
     "ginlibs-type-check": "^0.0.8"
   }
 }
