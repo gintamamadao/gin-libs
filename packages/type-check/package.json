@@ -66,7 +66,7 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
-    "rollup-plugin-add-global-ts": "^0.0.1",
+    "rollup-plugin-add-global-ts": "^0.0.3",
     "ts-jest": "^26.3.0",
     "tslib": "^2.0.0",
     "typescript": "^4.0.2"
