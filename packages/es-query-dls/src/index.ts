@@ -49,7 +49,7 @@ export class EsQueryDls {
   }
 
   public clone() {
-    return this.new(this.esIndex, this.queryDLS, this.pagingInfo)
+    return this.newInst(this.esIndex, this.queryDLS, this.pagingInfo)
   }
 
   public pagination(cur: number, size: number) {
@@ -92,7 +92,7 @@ export class EsQueryDls {
     return this
   }
 
-  public new(esIndex: string, queryDLS?: AnyObj, pagingInfo?: PagingInfo) {
+  public newInst(esIndex: string, queryDLS?: AnyObj, pagingInfo?: PagingInfo) {
     return new EsQueryDls(esIndex, queryDLS, pagingInfo)
   }
 
