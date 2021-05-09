@@ -6,3 +6,4 @@ dist
 es
 coverage
 package-lock.json
+.pnpm-debug.log
