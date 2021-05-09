@@ -1,5 +1,5 @@
 {
-  "name": "@credit/{{{pkgName}}}",
+  "name": "{{{pkgName}}}",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "yuan.li <yuan.li@shopee.com>",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "gitlab@git.garena.com:shopee/loan-service/credit_frontend/credit-plugins.git"
+    "url": "gitlab@git.garena.com:shopee/loan-service/credit_frontend/plugins.git"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
@@ -69,6 +69,6 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "@credit/cli-helper": "^0.0.39"
+    "cli-helper": "^0.0.39"
   }
 }
