@@ -54,9 +54,9 @@ console.log(dls)
 <!-- TOC -->
 
 - [API](#api)
-  - [term api](#term-api)
-  - [like api](#like-api)
-  - [range api](#range-api)
+  - [精确查找 term](#term-api)
+  - [模糊查找 like](#like-api)
+  - [范围查找 range](#range-api)
 
 ## API
 
