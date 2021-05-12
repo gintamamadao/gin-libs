@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-chain",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "ts 实现的链表",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

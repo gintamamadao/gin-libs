@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-plan",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -67,7 +67,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-chain": "^0.0.12",
+    "ginlibs-chain": "^0.0.13",
     "ginlibs-events": "^0.0.11",
     "ginlibs-type-check": "^0.0.8"
   },
