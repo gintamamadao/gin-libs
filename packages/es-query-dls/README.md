@@ -49,6 +49,15 @@ console.log(dls)
 **/
 ```
 
+# 目录
+
+<!-- TOC -->
+
+- [API](#api)
+  - [term api](#term-api)
+  - [like api](#like-api)
+  - [range api](#range-api)
+
 ## API
 
 - api 都有带有一个上层条件，意义如下
@@ -57,9 +66,14 @@ console.log(dls)
   - `not`: 对应 es 的 must_not 条件，对应 `非` 逻辑
   - `should`: 对应 es 的 must 条件，对应 `或` 逻辑
 
-### `.must.term(data)` | `.filter.term(data)` | `.not.term(data)`| `.should.term(data)`
+### term api
 
-- 对应的 es 的 term 条件，表示全匹配
+- `.must.term(data)`
+- `.filter.term(data)`
+- `.not.term(data)`
+- `.should.term(data)`
+
+> 对应的 es 的 term 条件，表示全匹配
 
 #### 参数：data
 
@@ -79,6 +93,8 @@ new EsQueryDls().not.term({
 })
 ```
 
+生成的 dls:
+
 ```json
 {
   "must_not": [
@@ -91,9 +107,14 @@ new EsQueryDls().not.term({
 }
 ```
 
-### `.must.like(data)` | `.filter.like(data)` | `.not.like(data)`| `.should.like(data)`
+### like api
 
-- 对应的 es 的 wildcard 条件，表示模糊匹配
+- `.must.like(data)`
+- `.filter.like(data)`
+- `.not.like(data)`
+- `.should.like(data)`
+
+> 对应的 es 的 wildcard 条件，表示模糊匹配
 
 #### 参数：data
 
@@ -111,6 +132,8 @@ new EsQueryDls().must.like({
 })
 ```
 
+生成的 dls:
+
 ```json
 {
   "must": [
@@ -123,9 +146,14 @@ new EsQueryDls().must.like({
 }
 ```
 
-### `.must.range(data)` | `.filter.range(data)` | `.not.range(data)`| `.should.range(data)`
+### range api
 
-- 对应的 es 的 range 条件，表示范围匹配
+- `.must.range(data)`
+- `.filter.range(data)`
+- `.not.range(data)`
+- `.should.range(data)`
+
+> 对应的 es 的 range 条件，表示范围匹配
 
 #### 参数：data
 
@@ -146,6 +174,8 @@ new EsQueryDls().must.like({
   },
 })
 ```
+
+生成的 dls:
 
 ```json
 {
