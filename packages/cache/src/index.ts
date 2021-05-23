@@ -29,6 +29,7 @@ export class Cache {
       filePath || this.filePath,
       fileName || this.fileName
     )
+    console.log(cacheFilePath)
     const oldContent = fsUtil.read(cacheFilePath)
     const newContent = `${oldContent}\n${content}`
     if (newContent.length > Math.pow(1024, 3)) {
