@@ -24,9 +24,24 @@ export const getListItemLinkName = (ast: any) => {
   return ast?.children?.[0]?.children[0]?.children?.[0]?.value
 }
 
-export const getHeadTitle = (ast: any) => {
+export const isHeadDepthOne = (ast: any) => {
   const title = getFirstChld(ast)?.value
   if (ast.type !== 'heading' || ast.depth !== 1 || !title || !isString(title)) {
+    return false
+  }
+  return true
+}
+
+export const isListAst = (ast: any) => {
+  if (!ast || ast.type !== 'list') {
+    return false
+  }
+  return true
+}
+
+export const getHeadTitle = (ast: any) => {
+  const title = getFirstChld(ast)?.value
+  if (!isHeadDepthOne(ast)) {
     return ''
   }
   return title
@@ -37,33 +52,48 @@ export const getHDTLEntryList = (ast: any, title: string) => {
     return []
   }
   const result: any = []
+  let count = 0
   for (let i = 0; i < ast.length; i++) {
     const chld = ast[i]
     const chldHT = getHeadTitle(chld)
-    if (chldHT !== title) {
+    if (isHeadDepthOne(chld) && chldHT === title) {
+      count++
       continue
     }
-    const listChld = ast[i + 1]
-    if (!listChld || listChld.type !== 'list') {
-      return []
+
+    if (isHeadDepthOne(chld) && count > 0) {
+      count = 0
+      continue
     }
-    for (const ltItemChld of listChld.children) {
-      if (ltItemChld.type !== 'listItem') {
-        continue
-      }
-      const url = getListItemLinkUrl(ltItemChld)
-      const name = getListItemLinkName(ltItemChld)
-      if (!url || !name) {
-        continue
-      }
-      result.push({
-        key: basename(url),
-        url,
-        name,
-        children: [],
-        parent: [],
-      })
+
+    if (isListAst(chld) && count > 0) {
+      Array.prototype.push.apply(result, getAllListItem(chld))
     }
+  }
+  return result
+}
+
+export const getAllListItem = (listAst: any) => {
+  const result: any[] = []
+  if (!listAst || listAst.type !== 'list') {
+    return []
+  }
+  for (const ltItemChld of listAst.children) {
+    if (ltItemChld.type !== 'listItem') {
+      continue
+    }
+    const url = getListItemLinkUrl(ltItemChld)
+    const name = getListItemLinkName(ltItemChld)
+    if (!url || !name) {
+      continue
+    }
+    result.push({
+      key: basename(url),
+      url,
+      name,
+      children: [],
+      parent: [],
+    })
   }
   return result
 }

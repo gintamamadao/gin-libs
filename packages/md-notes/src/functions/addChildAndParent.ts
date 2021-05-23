@@ -12,11 +12,8 @@ import { LiftoffEnv } from 'liftoff'
 import { basename, join, resolve } from 'path'
 import { TPL_FILE_DIR } from '../types/constant'
 import prettier from 'prettier'
-
-export const NodeNameMap = {
-  childNode: 'Child Node',
-  parentNode: 'Parent Node',
-}
+import cache from 'ginlibs-cache'
+import { NodeNameMap } from '../types/map'
 
 export const addChildAndParent = (
   liftEnv: LiftoffEnv,
@@ -36,12 +33,12 @@ export const addChildAndParent = (
       continue
     }
     const notesData = fromMarkdown(contStr)
-    console.log(JSON.stringify(notesData, undefined, 2))
+    // cache.write(JSON.stringify(notesData, undefined, 2))
     const chldChldEntryList = getHDTLEntryList(
       notesData.children,
       NodeNameMap.childNode
     )
-    console.log(JSON.stringify(chldChldEntryList, undefined, 2))
+    // cache.write(JSON.stringify(chldChldEntryList, undefined, 2))
     if (!isArray(chldChldEntryList) || chldChldEntryList.length <= 0) {
       continue
     }
