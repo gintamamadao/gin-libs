@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-md-notes",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "./bin/cli.js",
   "types": "./bin/index.d.ts",
@@ -30,12 +30,12 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
+    "ginlibs-cache": "^0.0.2",
     "ginlibs-file-util": "^0.0.4",
     "ginlibs-log": "^0.0.4",
     "ginlibs-template": "^0.0.4",
     "ginlibs-type-check": "^0.0.17",
     "ginlibs-utils": "^0.0.7",
-    "ginlibs-cache": "^0.0.2",
     "glob": "^7.1.6",
     "interpret": "^2.2.0",
     "liftoff": "^3.1.0",
