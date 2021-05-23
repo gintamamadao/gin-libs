@@ -19,7 +19,7 @@ const cli = new Liftoff({
 const onPrepare = function (liftEnv) {
   cache.write(JSON.stringify(liftEnv, undefined, 2))
   cache.write(JSON.stringify(argv, undefined, 2))
-  cache.write(JSON.stringify(process.env, undefined, 2))
+  cache.write(JSON.stringify(process.env, undefined, 2), 'dsaf')
   const fn = argv?.w ? watchCompleteChange : addChildAndParent
   cli.execute(liftEnv, () => {
     return fn.apply(null, [liftEnv])
