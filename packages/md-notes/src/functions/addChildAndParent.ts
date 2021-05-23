@@ -13,6 +13,11 @@ import { basename, join, resolve } from 'path'
 import { TPL_FILE_DIR } from '../types/constant'
 import prettier from 'prettier'
 
+export const NodeNameMap = {
+  childNode: 'Child Node',
+  parentNode: 'Parent Node',
+}
+
 export const addChildAndParent = (
   liftEnv: LiftoffEnv,
   checkFiles?: string[]
@@ -31,7 +36,12 @@ export const addChildAndParent = (
       continue
     }
     const notesData = fromMarkdown(contStr)
-    const chldChldEntryList = getHDTLEntryList(notesData.children, 'Child Node')
+    console.log(JSON.stringify(notesData, undefined, 2))
+    const chldChldEntryList = getHDTLEntryList(
+      notesData.children,
+      NodeNameMap.childNode
+    )
+    console.log(JSON.stringify(chldChldEntryList, undefined, 2))
     if (!isArray(chldChldEntryList) || chldChldEntryList.length <= 0) {
       continue
     }
@@ -57,7 +67,7 @@ export const addChildAndParent = (
         const itNotesData = fromMarkdown(itContStr)
         const itParentEntryList = getHDTLEntryList(
           itNotesData.children,
-          'Parent Node'
+          NodeNameMap.parentNode
         )
         const exsitParent = itParentEntryList.find((itPnt) => {
           return itPnt.key === basename(url)
@@ -65,7 +75,7 @@ export const addChildAndParent = (
         if (!exsitParent) {
           const listChld = getHDTLEntryListChldObj(
             itNotesData.children,
-            'Parent Node'
+            NodeNameMap.parentNode
           )
           if (listChld && isArray(listChld.children)) {
             addListItem(`- [../](./${basename(url)})`, listChld)
