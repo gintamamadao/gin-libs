@@ -1,3 +1,3 @@
-export * from "./mdTree/getJSONMdTree";
-export * from "./functions/addChildAndParent";
-export * from "./functions/watchCompleteChange";
+export * from './functions/addChildAndParent'
+export * from './functions/watchCompleteChange'
+export * from './functions/mdTreeShaking'

@@ -15,10 +15,8 @@ import prettier from 'prettier'
 import cache from 'ginlibs-cache'
 import { NodeNameMap } from '../types/map'
 
-export const addChildAndParent = (
-  liftEnv: LiftoffEnv,
-  checkFiles?: string[]
-) => {
+export const addChildAndParent = (checkFiles?: string[]) => {
+  const liftEnv: LiftoffEnv = globalThis._cliLiftEnv || {}
   const { cwd } = liftEnv
   const docsPath = join(cwd, '/docs')
   const notesFiles = fsUtil.find(docsPath, './*.md')
