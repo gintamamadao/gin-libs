@@ -4,6 +4,7 @@ import v8flags from 'v8flags'
 import Liftoff from 'liftoff'
 import minimist from 'minimist'
 import { addChildAndParent, watchCompleteChange } from '../index'
+import cache from 'ginlibs-cache'
 
 const processArgv = process.argv.slice(2)
 const argv = minimist(processArgv)
@@ -15,17 +16,8 @@ const cli = new Liftoff({
   v8flags,
 })
 
-const getConfig = (liftEnv) => {
-  const configPath = liftEnv.configPath
-  if (!configPath) {
-    return {}
-  }
-  const config = require(configPath)
-  return config
-}
-
 const onPrepare = function (liftEnv) {
-  // const config = getConfig(liftEnv)
+  cache.write(JSON.stringify(liftEnv, undefined, 2))
   const fn = argv?.w ? watchCompleteChange : addChildAndParent
   cli.execute(liftEnv, () => {
     return fn.apply(null, [liftEnv])
