@@ -10,30 +10,25 @@ const HASH = crypto
   .update('ginlibs_cache_key')
   .digest('base64')
 
-const FileTypeMap = {
-  json: '.json',
-  yaml: '.yaml',
-  text: '.txt',
-}
-
 export class Cache {
-  read(key: string = HASH, fileType: keyof typeof FileTypeMap = 'text') {
-    const cacheFilePath = join(
-      os.tmpdir(),
-      `${key}${CACHE_FILE_NAME}${FileTypeMap[fileType] || ''}`
-    )
-    return fsUtil.read(cacheFilePath)
+  filePath: string = os.tmpdir()
+  fileName = `${HASH}${CACHE_FILE_NAME}.txt`
+
+  constructor(options?: { filePath: string; fileName: string }) {
+    this.filePath = options?.filePath || this.filePath
+    this.fileName = options?.fileName || this.fileName
   }
-  write(
-    content: string,
-    key: string = HASH,
-    fileType: keyof typeof FileTypeMap = 'text'
-  ) {
-    const cacheFilePath = join(
-      os.tmpdir(),
-      `${key}${CACHE_FILE_NAME}${FileTypeMap[fileType] || ''}`
+
+  read(filePath?: string, fileName?: string) {
+    return fsUtil.read(
+      join(filePath || this.filePath, fileName || this.fileName)
     )
-    console.log(cacheFilePath)
+  }
+  write(content: string, filePath?: string, fileName?: string) {
+    const cacheFilePath = join(
+      filePath || this.filePath,
+      fileName || this.fileName
+    )
     const oldContent = fsUtil.read(cacheFilePath)
     const newContent = `${oldContent}\n${content}`
     if (newContent.length > Math.pow(1024, 3)) {
