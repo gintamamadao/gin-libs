@@ -39,7 +39,8 @@ export const mdTreeShaking = () => {
 
   const checkItems = (items: any[]) => {
     for (const it of items) {
-      const entryCont = fsUtil.read(it.url)
+      cache.write(JSON.stringify(items, undefined, 2))
+      const entryCont = fsUtil.read(join(docsPath, it.key))
       if (!entryCont) {
         continue
       }
