@@ -12,7 +12,9 @@
     "dev": "rollup -c rollup.config.js -w",
     "cli": "node bin/cli.js",
     "build": "rimraf bin; rollup -c rollup.config.js; chmod 775 bin/cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "git-cz",
+    "pub": "lerna publish"
   },
   "repository": {
     "type": "git",

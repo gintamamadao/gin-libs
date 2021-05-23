@@ -5,6 +5,7 @@ import Liftoff from 'liftoff'
 import minimist from 'minimist'
 import { addChildAndParent, watchCompleteChange } from '../index'
 import cache from 'ginlibs-cache'
+import pkg from '../../package.json'
 
 const processArgv = process.argv.slice(2)
 const argv = minimist(processArgv)
@@ -17,10 +18,18 @@ const cli = new Liftoff({
 })
 
 const onPrepare = function (liftEnv) {
-  cache.write(JSON.stringify(liftEnv, undefined, 2))
+  const params = argv._ || []
   cache.write(JSON.stringify(argv, undefined, 2))
-  cache.write(JSON.stringify(process.env, undefined, 2), 'dsaf')
-  const fn = argv?.w ? watchCompleteChange : addChildAndParent
+
+  if (argv.v || argv.version) {
+    console.log(pkg.version)
+  }
+
+  let fn = addChildAndParent
+  if (argv.w) {
+    fn = watchCompleteChange
+  }
+
   cli.execute(liftEnv, () => {
     return fn.apply(null, [liftEnv])
   })
