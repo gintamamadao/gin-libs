@@ -1,14 +1,10 @@
 import { LiftoffEnv } from 'liftoff'
 import fsUtil from 'ginlibs-file-util'
-import { basename, join, resolve } from 'path'
+import { basename, join } from 'path'
 import fromMarkdown from 'mdast-util-from-markdown'
 import { NodeNameMap } from '../types/map'
 import { isArray } from 'ginlibs-type-check'
-import {
-  getHDTLEntryList,
-  getHDTLEntryListChldObj,
-  addListItem,
-} from '../utils/astUtil'
+import { getHDTLEntryList } from '../utils/astUtil'
 import cache from 'ginlibs-cache'
 
 const EntryMDFiles = ['root.md']
@@ -39,7 +35,7 @@ export const mdTreeShaking = () => {
 
   const checkItems = (items: any[]) => {
     for (const it of items) {
-      cache.write(JSON.stringify(items, undefined, 2))
+      // cache.write(JSON.stringify(items, undefined, 2))
       const entryCont = fsUtil.read(join(docsPath, it.key))
       if (!entryCont) {
         continue
@@ -58,9 +54,15 @@ export const mdTreeShaking = () => {
       for (const itChld of chldChldEntryList) {
         notesFileMap[itChld.key].count++
       }
-      return checkItems(chldChldEntryList)
+      checkItems(chldChldEntryList)
     }
   }
   checkItems(entryItems)
-  cache.write(JSON.stringify(notesFileMap, undefined, 2))
+  // cache.write(JSON.stringify(notesFileMap, undefined, 2))
+  for (const key of Object.keys(notesFileMap)) {
+    const it = notesFileMap[key]
+    if (it.count <= 0) {
+      fsUtil.del(join(docsPath, it.key))
+    }
+  }
 }
