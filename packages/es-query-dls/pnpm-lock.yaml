@@ -21,8 +21,6 @@ specifiers:
   eslint-import-resolver-typescript: ^2.2.0
   eslint-plugin-import: ^2.22.0
   eslint-plugin-prettier: ^3.1.4
-  ginlibs-format: ^0.0.8
-  ginlibs-set-key: ^0.0.8
   ginlibs-type-check: ^0.0.8
   glob: ^7.1.6
   husky: ^4.2.5
@@ -41,8 +39,6 @@ specifiers:
   typescript: ^4.0.2
 
 dependencies:
-  ginlibs-format: 0.0.8
-  ginlibs-set-key: 0.0.8
   ginlibs-type-check: 0.0.8
 
 devDependencies:
@@ -5030,18 +5026,6 @@ packages:
     dependencies:
       assert-plus: 1.0.0
     dev: true
-
-  /ginlibs-format/0.0.8:
-    resolution: {integrity: sha512-veRMmdcJfJ6ivygVpLFXE7kya2ZgwaNVnizperO5EFftDLHsC28ep9k093nNR+2OgZoLaLXUd7B6Nllr/7RaVQ==}
-    dependencies:
-      ginlibs-type-check: 0.0.8
-    dev: false
-
-  /ginlibs-set-key/0.0.8:
-    resolution: {integrity: sha512-lwUGu+Xd3zCs28+WqjATQ3HUtAmfalcQCmaccI4qfe7v5T7RaEOTroNRTUtBbWhxtB4yJKIfscaZhkKsKxPUKQ==}
-    dependencies:
-      ginlibs-type-check: 0.0.8
-    dev: false
 
   /ginlibs-type-check/0.0.8:
     resolution: {integrity: sha512-RAMjwkrU68ZfL/2kfxNhVe7Ym0ATILo9z7ZBEfMh0kXSNyhSBkwHChnBNdkReSdVGt5zHjLPeyIPonFEdP35xA==}
