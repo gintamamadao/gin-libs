@@ -1,6 +1,6 @@
 # Parent Node
 
-- [/](./root.md)
+- [ROOT](./root.md)
 - [{{{parentName}}}](./{{{parentKey}}})
 
 # Child Node

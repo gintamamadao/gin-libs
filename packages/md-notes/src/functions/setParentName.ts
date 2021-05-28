@@ -66,7 +66,7 @@ export const setParentName = () => {
     for (const parentIt of itParentEntryList) {
       if (EntryMDFiles.includes(parentIt.key)) {
         delListItemByKey(listChld, parentIt.key)
-        addListItem(`- [root](./${parentIt.key})`, listChld)
+        addListItem(`- [ROOT](./${parentIt.key})`, listChld)
         continue
       }
       delListItemByKey(listChld, parentIt.key)
