@@ -59,16 +59,16 @@ export const setParentName = () => {
       noteAst.children,
       NodeNameMap.parentNode
     )
+    const listChld = getHDTLEntryListChldObj(
+      noteAst.children,
+      NodeNameMap.parentNode
+    )
     for (const parentIt of itParentEntryList) {
       if (EntryMDFiles.includes(parentIt.key)) {
+        delListItemByKey(listChld, parentIt.key)
+        addListItem(`- [root](./${parentIt.key})`, listChld)
         continue
       }
-      // cache.write(JSON.stringify(parentIt, undefined, 2))
-      const listChld = getHDTLEntryListChldObj(
-        noteAst.children,
-        NodeNameMap.parentNode
-      )
-      // cache.write(JSON.stringify(listChld, undefined, 2))
       delListItemByKey(listChld, parentIt.key)
       addListItem(
         `- [${getParentName(parentIt.url)}](./${parentIt.key})`,
