@@ -50,7 +50,23 @@ export const delNotExistParent = () => {
         return it.key === parentIt.key
       })
       if (exsitParent) {
-        continue
+        if (EntryMDFiles.includes(exsitParent.key)) {
+          continue
+        }
+        // getHDTLEntryList 获取的路径是相对路径
+        const parentContStr = fsUtil.read(exsitParent.url)
+        const parentAst = fromMarkdown(parentContStr)
+        const parentChldEntryList = getHDTLEntryList(
+          parentAst.children,
+          NodeNameMap.childNode
+        )
+        // cache.write(JSON.stringify(parentChldEntryList, undefined, 2))
+        const exsitNoteSelf = parentChldEntryList.find((it) => {
+          return it.key === noteIt.key
+        })
+        if (exsitNoteSelf) {
+          continue
+        }
       }
       changeFlag = true
       // cache.write(JSON.stringify(parentIt, undefined, 2))
