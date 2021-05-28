@@ -185,3 +185,31 @@ export const delListItemByKey = (listAst: any, key: string) => {
   }
   return result
 }
+
+export const setNextHDTLNode = (ast: any, title: string, node: any) => {
+  if (!isArray(ast) || ast.length <= 0) {
+    return []
+  }
+  const result: any = []
+  let count = 0
+  let index = 0
+  for (let i = 0; i < ast.length; i++) {
+    const chld = ast[i]
+    const chldHT = getHeadTitle(chld)
+    if (isHeadDepthOne(chld) && chldHT === title) {
+      count++
+      continue
+    }
+
+    if (isHeadDepthOne(chld) && count > 0) {
+      count++
+      index = i
+      break
+    }
+  }
+  if (count === 2) {
+    // cache.write(JSON.stringify(ast[index], undefined, 2))
+    ast[index] = node
+  }
+  return result
+}
