@@ -5,4 +5,4 @@
 
 # Child Node
 
-# Detail
+# {{{noteName}}}

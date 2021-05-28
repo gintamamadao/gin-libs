@@ -42,7 +42,7 @@ export const addChildAndParent = (checkFiles?: string[]) => {
       continue
     }
     for (const it of chldChldEntryList) {
-      const { key, url: childUrl } = it
+      const { key, url: childUrl, name: childName } = it
       const exsitUrl = notesFilesKey.find((itKey: string) => {
         return itKey === key
       })
@@ -50,6 +50,7 @@ export const addChildAndParent = (checkFiles?: string[]) => {
         const newCont = renderTplFile(join(TPL_FILE_DIR, 'base-md-notes.tpl'), {
           parentKey: basename(url),
           parentName: getParentName(url),
+          noteName: childName || 'Detail',
         })
         const prettierCont = prettier.format(newCont || '', {
           parser: 'markdown',
