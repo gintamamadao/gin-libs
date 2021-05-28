@@ -11,8 +11,8 @@ import {
   setParentName,
   setNoteTitle,
 } from '../index'
-import cache from 'ginlibs-cache'
-import pkg from '../../package.json'
+import fsUtil from 'ginlibs-file-util'
+import { resolve } from 'path'
 
 const processArgv = process.argv.slice(2)
 const argv = minimist(processArgv)
@@ -32,7 +32,10 @@ const onPrepare = function (liftEnv) {
   globalThis._cliLiftEnv = liftEnv
 
   if (argv.v || argv.version) {
-    console.log(pkg.version)
+    try {
+      const pkg = JSON.parse(fsUtil.read(resolve(__dirname, '../package.json')))
+      console.log(pkg.version)
+    } catch (e) {}
   }
 
   let fn: any = addChildAndParent
