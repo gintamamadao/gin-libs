@@ -8,6 +8,7 @@ import {
   watchCompleteChange,
   mdTreeShaking,
   mdPretty,
+  setParentName,
 } from '../index'
 import cache from 'ginlibs-cache'
 import pkg from '../../package.json'
@@ -45,6 +46,10 @@ const onPrepare = function (liftEnv) {
 
   if (argv.p) {
     fn = mdPretty
+  }
+
+  if (argv.s) {
+    fn = setParentName
   }
 
   cli.execute(liftEnv, () => {

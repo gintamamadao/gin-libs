@@ -14,6 +14,7 @@ import { TPL_FILE_DIR } from '../types/constant'
 import prettier from 'prettier'
 import cache from 'ginlibs-cache'
 import { NodeNameMap } from '../types/map'
+import { getParentName } from './setParentName'
 
 export const addChildAndParent = (checkFiles?: string[]) => {
   const liftEnv: LiftoffEnv = globalThis._cliLiftEnv || {}
@@ -48,6 +49,7 @@ export const addChildAndParent = (checkFiles?: string[]) => {
       if (!exsitUrl) {
         const newCont = renderTplFile(join(TPL_FILE_DIR, 'base-md-notes.tpl'), {
           parentKey: basename(url),
+          parentName: getParentName(url),
         })
         const prettierCont = prettier.format(newCont || '', {
           parser: 'markdown',
@@ -73,7 +75,10 @@ export const addChildAndParent = (checkFiles?: string[]) => {
             NodeNameMap.parentNode
           )
           if (listChld && isArray(listChld.children)) {
-            addListItem(`- [../](./${basename(url)})`, listChld)
+            addListItem(
+              `- [${getParentName(url)}](./${basename(url)})`,
+              listChld
+            )
             const prettierCont = prettier.format(
               toMarkdown(itNotesData) || '',
               {
