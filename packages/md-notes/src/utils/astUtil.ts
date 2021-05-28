@@ -3,6 +3,7 @@ import { isString, isArray } from 'ginlibs-type-check'
 import { basename, resolve } from 'path'
 import fromMarkdown from 'mdast-util-from-markdown'
 import fsUtil from 'ginlibs-file-util'
+import cache from 'ginlibs-cache'
 
 export const getEntryLink = (ast: any) => {
   return compose(getListItemLinkUrl, getFirstChld, getFirstChld)(ast)
@@ -163,4 +164,24 @@ export const addListItem = (itMdStr: string, ast: any) => {
   const itData = fromMarkdown(itMdStr)
   ast.children.push(compose(getFirstChld, getFirstChld)(itData))
   return ast
+}
+
+export const delListItemByKey = (listAst: any, key: string) => {
+  const result: any[] = []
+  if (!listAst || listAst.type !== 'list') {
+    return []
+  }
+  const index = listAst.children.findIndex((ltIt) => {
+    if (ltIt.type !== 'listItem') {
+      return false
+    }
+    const url = getListItemLinkUrl(ltIt)
+
+    // cache.write(url)
+    return key === basename(url)
+  })
+  if (index >= 0) {
+    listAst.children.splice(index, 1)
+  }
+  return result
 }

@@ -4,10 +4,68 @@ import { basename, join } from 'path'
 import fromMarkdown from 'mdast-util-from-markdown'
 import { NodeNameMap } from '../types/map'
 import { isArray } from 'ginlibs-type-check'
-import { getHDTLEntryList } from '../utils/astUtil'
+import {
+  getHDTLEntryList,
+  getHDTLEntryListChldObj,
+  delListItemByKey,
+} from '../utils/astUtil'
 import cache from 'ginlibs-cache'
+import prettier from 'prettier'
+import toMarkdown from 'mdast-util-to-markdown'
+import { addChildAndParent } from './addChildAndParent'
 
 const EntryMDFiles = ['root.md']
+
+export const delNotExistParent = () => {
+  const liftEnv: LiftoffEnv = globalThis._cliLiftEnv || {}
+  const { cwd } = liftEnv
+  const docsPath = join(cwd, '/docs')
+  const notesFiles = fsUtil.find(docsPath, './*.md')
+  const notesList = notesFiles.map((itFile) => {
+    const key = basename(itFile)
+    return {
+      key,
+      url: itFile,
+    }
+  })
+  for (const noteIt of notesList) {
+    const { url } = noteIt
+    const contStr = fsUtil.read(url)
+    if (!contStr) {
+      fsUtil.del(url)
+      continue
+    }
+    const noteAst = fromMarkdown(contStr)
+    const itParentEntryList = getHDTLEntryList(
+      noteAst.children,
+      NodeNameMap.parentNode
+    )
+    // cache.write(JSON.stringify(itParentEntryList, undefined, 2))
+    let changeFlag = false
+    for (const parentIt of itParentEntryList) {
+      const exsitParent = notesList.find((it) => {
+        return it.key === parentIt.key
+      })
+      if (exsitParent || 'entry.md' === parentIt.key) {
+        continue
+      }
+      changeFlag = true
+      // cache.write(JSON.stringify(parentIt, undefined, 2))
+      const listChld = getHDTLEntryListChldObj(
+        noteAst.children,
+        NodeNameMap.parentNode
+      )
+      // cache.write(JSON.stringify(listChld, undefined, 2))
+      delListItemByKey(listChld, parentIt.key)
+    }
+    if (changeFlag) {
+      const prettierCont = prettier.format(toMarkdown(noteAst) || '', {
+        parser: 'markdown',
+      })
+      fsUtil.write(url, prettierCont)
+    }
+  }
+}
 
 export const mdTreeShaking = () => {
   const liftEnv: LiftoffEnv = globalThis._cliLiftEnv || {}
@@ -65,4 +123,6 @@ export const mdTreeShaking = () => {
       fsUtil.del(join(docsPath, it.key))
     }
   }
+  delNotExistParent()
+  addChildAndParent()
 }
