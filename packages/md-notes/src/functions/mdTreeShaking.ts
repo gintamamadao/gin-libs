@@ -29,10 +29,13 @@ export const delNotExistParent = () => {
     }
   })
   for (const noteIt of notesList) {
-    const { url } = noteIt
+    const { url, key } = noteIt
     const contStr = fsUtil.read(url)
     if (!contStr) {
       fsUtil.del(url)
+      continue
+    }
+    if (EntryMDFiles.includes(key)) {
       continue
     }
     const noteAst = fromMarkdown(contStr)
@@ -46,7 +49,7 @@ export const delNotExistParent = () => {
       const exsitParent = notesList.find((it) => {
         return it.key === parentIt.key
       })
-      if (exsitParent || 'entry.md' === parentIt.key) {
+      if (exsitParent) {
         continue
       }
       changeFlag = true
