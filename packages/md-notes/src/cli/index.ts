@@ -3,7 +3,12 @@ import interpret from 'interpret'
 import v8flags from 'v8flags'
 import Liftoff from 'liftoff'
 import minimist from 'minimist'
-import { addChildAndParent, watchCompleteChange, mdTreeShaking } from '../index'
+import {
+  addChildAndParent,
+  watchCompleteChange,
+  mdTreeShaking,
+  mdPretty,
+} from '../index'
 import cache from 'ginlibs-cache'
 import pkg from '../../package.json'
 
@@ -36,6 +41,10 @@ const onPrepare = function (liftEnv) {
 
   if (argv.t) {
     fn = mdTreeShaking
+  }
+
+  if (argv.p) {
+    fn = mdPretty
   }
 
   cli.execute(liftEnv, () => {
