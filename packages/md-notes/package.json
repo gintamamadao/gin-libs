@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-md-notes",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "",
   "main": "./bin/cli.js",
   "types": "./bin/index.d.ts",
