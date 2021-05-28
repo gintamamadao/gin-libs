@@ -20,6 +20,7 @@ export const delNotExistChild = () => {
       key,
       url: itFile,
       count: 0,
+      hadCheckChild: false,
     }
     return memo
   }, {})
@@ -36,7 +37,7 @@ export const delNotExistChild = () => {
     for (const it of items) {
       // cache.write(JSON.stringify(items, undefined, 2))
       const entryCont = fsUtil.read(join(docsPath, it.key))
-      if (!entryCont) {
+      if (!entryCont || notesFileMap[it.key]?.hadCheckChild) {
         continue
       }
       const notesData = fromMarkdown(entryCont)
@@ -53,6 +54,7 @@ export const delNotExistChild = () => {
       for (const itChld of chldChldEntryList) {
         notesFileMap[itChld.key].count++
       }
+      notesFileMap[it.key].hadCheckChild = true
       checkItems(chldChldEntryList)
     }
   }
