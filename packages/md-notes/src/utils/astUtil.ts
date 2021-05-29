@@ -210,6 +210,8 @@ export const setNextHDTLNode = (ast: any, title: string, node: any) => {
   if (count === 2) {
     // cache.write(JSON.stringify(ast[index], undefined, 2))
     ast[index] = node
+  } else if (count === 1) {
+    ast.push(node)
   }
   return result
 }
