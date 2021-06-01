@@ -1,8 +1,8 @@
-# Parent Node
+# {{{parentNode}}}
 
-- [ROOT](./root.md)
+- [{{{rootName}}}](./{{{rootKey}}})
 - [{{{parentName}}}](./{{{parentKey}}})
 
-# Child Node
+# {{{childNode}}}
 
 # {{{noteName}}}

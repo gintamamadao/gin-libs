@@ -13,7 +13,7 @@ import { basename, join, resolve } from 'path'
 import { TPL_FILE_DIR } from '../types/constant'
 import prettier from 'prettier'
 import cache from 'ginlibs-cache'
-import { NodeNameMap } from '../types/map'
+import { NodeNameMap, RootInfo } from '../types/map'
 import { getParentName } from './setParentName'
 
 export const addChildAndParent = (checkFiles?: string[]) => {
@@ -50,7 +50,11 @@ export const addChildAndParent = (checkFiles?: string[]) => {
         const newCont = renderTplFile(join(TPL_FILE_DIR, 'base-md-notes.tpl'), {
           parentKey: basename(url),
           parentName: getParentName(url),
-          noteName: childName || 'Detail',
+          noteName: childName || NodeNameMap.detailNode,
+          parentNode: NodeNameMap.parentNode,
+          childNode: NodeNameMap.childNode,
+          rootName: RootInfo.name,
+          rootKey: RootInfo.key,
         })
         const prettierCont = prettier.format(newCont || '', {
           parser: 'markdown',
