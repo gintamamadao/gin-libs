@@ -38,7 +38,15 @@ const onPrepare = function (liftEnv) {
     } catch (e) {}
   }
 
-  let fn: any = addChildAndParent
+  let fn: any = () => {
+    console.log(`
+    -w 监听
+    -w tree shaking
+    -p pretty
+    -s set parent node
+    -n set note tile
+`)
+  }
 
   if (argv.w) {
     fn = watchCompleteChange
