@@ -2,11 +2,10 @@ import { LiftoffEnv } from 'liftoff'
 import fsUtil from 'ginlibs-file-util'
 import { basename, join } from 'path'
 import fromMarkdown from 'mdast-util-from-markdown'
-import { NodeNameMap } from '../types/map'
-import { EntryMDFiles } from '../types/constant'
 import { isArray } from 'ginlibs-type-check'
 import { getHDTLEntryList } from '../utils/astUtil'
 import cache from 'ginlibs-cache'
+import cfg from '../config'
 
 export const delNotExistChild = () => {
   const liftEnv: LiftoffEnv = globalThis._cliLiftEnv || {}
@@ -25,7 +24,7 @@ export const delNotExistChild = () => {
     return memo
   }, {})
 
-  const entryItems = EntryMDFiles.map((key) => {
+  const entryItems = [cfg.rootInfo.key].map((key) => {
     notesFileMap[key].count++
     return {
       key,
@@ -44,7 +43,7 @@ export const delNotExistChild = () => {
       // cache.write(JSON.stringify(notesData, undefined, 2))
       const chldChldEntryList = getHDTLEntryList(
         notesData.children,
-        NodeNameMap.childNode
+        cfg.nodeName.childNode
       )
       // cache.write(JSON.stringify(chldChldEntryList, undefined, 2))
       if (!isArray(chldChldEntryList) || chldChldEntryList.length <= 0) {

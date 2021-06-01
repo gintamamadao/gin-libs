@@ -1,8 +1,6 @@
-import { LiftoffEnv } from 'liftoff'
 import fsUtil from 'ginlibs-file-util'
 import { resolve, basename } from 'path'
 import fromMarkdown from 'mdast-util-from-markdown'
-import { NodeNameMap } from '../types/map'
 import {
   getHDTLEntryList,
   getHDTLEntryListChldObj,
@@ -13,7 +11,7 @@ import { getDocsPath, findAllNotes } from '../utils'
 import cache from 'ginlibs-cache'
 import prettier from 'prettier'
 import toMarkdown from 'mdast-util-to-markdown'
-import { EntryMDFiles } from '../types/constant'
+import cfg from '../config'
 
 export const getParentName = (url: string) => {
   const docsPath = getDocsPath()
@@ -21,7 +19,7 @@ export const getParentName = (url: string) => {
   const noteAst = fromMarkdown(contStr)
   const parentEntryList = getHDTLEntryList(
     noteAst.children,
-    NodeNameMap.parentNode
+    cfg.nodeName.parentNode
   )
   const key = basename(url)
   for (const parentIt of parentEntryList) {
@@ -29,7 +27,7 @@ export const getParentName = (url: string) => {
     const parentAst = fromMarkdown(parentContStr)
     const parentChldEntryList = getHDTLEntryList(
       parentAst.children,
-      NodeNameMap.childNode
+      cfg.nodeName.childNode
     )
     const exsitNoteSelf = parentChldEntryList.find((it) => {
       return it.key === key
@@ -51,20 +49,20 @@ export const setParentName = () => {
       fsUtil.del(url)
       continue
     }
-    if (EntryMDFiles.includes(key)) {
+    if (cfg.rootInfo.key === key) {
       continue
     }
     const noteAst = fromMarkdown(contStr)
     const itParentEntryList = getHDTLEntryList(
       noteAst.children,
-      NodeNameMap.parentNode
+      cfg.nodeName.parentNode
     )
     const listChld = getHDTLEntryListChldObj(
       noteAst.children,
-      NodeNameMap.parentNode
+      cfg.nodeName.parentNode
     )
     for (const parentIt of itParentEntryList) {
-      if (EntryMDFiles.includes(parentIt.key)) {
+      if (cfg.rootInfo.key === parentIt.key) {
         delListItemByKey(listChld, parentIt.key)
         addListItem(`- [ROOT](./${parentIt.key})`, listChld)
         continue

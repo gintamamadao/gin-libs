@@ -13,8 +13,8 @@ import { basename, join, resolve } from 'path'
 import { TPL_FILE_DIR } from '../types/constant'
 import prettier from 'prettier'
 import cache from 'ginlibs-cache'
-import { NodeNameMap, RootInfo } from '../types/map'
 import { getParentName } from './setParentName'
+import cfg from "../config"
 
 export const addChildAndParent = (checkFiles?: string[]) => {
   const liftEnv: LiftoffEnv = globalThis._cliLiftEnv || {}
@@ -35,7 +35,7 @@ export const addChildAndParent = (checkFiles?: string[]) => {
     // cache.write(JSON.stringify(notesData, undefined, 2))
     const chldChldEntryList = getHDTLEntryList(
       notesData.children,
-      NodeNameMap.childNode
+      cfg.nodeName.childNode
     )
     // cache.write(JSON.stringify(chldChldEntryList, undefined, 2))
     if (!isArray(chldChldEntryList) || chldChldEntryList.length <= 0) {
@@ -50,11 +50,11 @@ export const addChildAndParent = (checkFiles?: string[]) => {
         const newCont = renderTplFile(join(TPL_FILE_DIR, 'base-md-notes.tpl'), {
           parentKey: basename(url),
           parentName: getParentName(url),
-          noteName: childName || NodeNameMap.detailNode,
-          parentNode: NodeNameMap.parentNode,
-          childNode: NodeNameMap.childNode,
-          rootName: RootInfo.name,
-          rootKey: RootInfo.key,
+          noteName: childName || cfg.nodeName.detailNode,
+          parentNode: cfg.nodeName.parentNode,
+          childNode: cfg.nodeName.childNode,
+          rootName: cfg.rootInfo.name,
+          rootKey: cfg.rootInfo.key,
         })
         const prettierCont = prettier.format(newCont || '', {
           parser: 'markdown',
@@ -69,7 +69,7 @@ export const addChildAndParent = (checkFiles?: string[]) => {
         const itNotesData = fromMarkdown(itContStr)
         const itParentEntryList = getHDTLEntryList(
           itNotesData.children,
-          NodeNameMap.parentNode
+          cfg.nodeName.parentNode
         )
         const exsitParent = itParentEntryList.find((itPnt) => {
           return itPnt.key === basename(url)
@@ -77,7 +77,7 @@ export const addChildAndParent = (checkFiles?: string[]) => {
         if (!exsitParent) {
           const listChld = getHDTLEntryListChldObj(
             itNotesData.children,
-            NodeNameMap.parentNode
+            cfg.nodeName.parentNode
           )
           if (listChld && isArray(listChld.children)) {
             addListItem(

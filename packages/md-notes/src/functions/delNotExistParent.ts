@@ -2,7 +2,6 @@ import { LiftoffEnv } from 'liftoff'
 import fsUtil from 'ginlibs-file-util'
 import { basename, join } from 'path'
 import fromMarkdown from 'mdast-util-from-markdown'
-import { NodeNameMap } from '../types/map'
 import {
   getHDTLEntryList,
   getHDTLEntryListChldObj,
@@ -11,7 +10,7 @@ import {
 import cache from 'ginlibs-cache'
 import prettier from 'prettier'
 import toMarkdown from 'mdast-util-to-markdown'
-import { EntryMDFiles } from '../types/constant'
+import cfg from '../config'
 
 export const delNotExistParent = () => {
   const liftEnv: LiftoffEnv = globalThis._cliLiftEnv || {}
@@ -32,13 +31,13 @@ export const delNotExistParent = () => {
       fsUtil.del(url)
       continue
     }
-    if (EntryMDFiles.includes(key)) {
+    if (cfg.rootInfo.key === key) {
       continue
     }
     const noteAst = fromMarkdown(contStr)
     const itParentEntryList = getHDTLEntryList(
       noteAst.children,
-      NodeNameMap.parentNode
+      cfg.nodeName.parentNode
     )
     // cache.write(JSON.stringify(itParentEntryList, undefined, 2))
     let changeFlag = false
@@ -47,7 +46,7 @@ export const delNotExistParent = () => {
         return it.key === parentIt.key
       })
       if (exsitParent) {
-        if (EntryMDFiles.includes(exsitParent.key)) {
+        if (cfg.rootInfo.key === exsitParent.key) {
           continue
         }
         // getHDTLEntryList 获取的路径是相对路径
@@ -55,7 +54,7 @@ export const delNotExistParent = () => {
         const parentAst = fromMarkdown(parentContStr)
         const parentChldEntryList = getHDTLEntryList(
           parentAst.children,
-          NodeNameMap.childNode
+          cfg.nodeName.childNode
         )
         // cache.write(JSON.stringify(parentChldEntryList, undefined, 2))
         const exsitNoteSelf = parentChldEntryList.find((it) => {
@@ -69,7 +68,7 @@ export const delNotExistParent = () => {
       // cache.write(JSON.stringify(parentIt, undefined, 2))
       const listChld = getHDTLEntryListChldObj(
         noteAst.children,
-        NodeNameMap.parentNode
+        cfg.nodeName.parentNode
       )
       // cache.write(JSON.stringify(listChld, undefined, 2))
       delListItemByKey(listChld, parentIt.key)
