@@ -67,6 +67,7 @@
   },
   "dependencies": {
     "ginlibs-file-util": "^0.0.4",
+    "ginlibs-type-check": "^0.0.17",
     "json-stringify-safe": "^5.0.1"
   }
 }
