@@ -23,6 +23,7 @@ specifiers:
   eslint-plugin-prettier: ^3.1.4
   husky: ^4.2.5
   jest: ^26.4.2
+  json-stringify-safe: ^5.0.1
   lerna: ^3.22.1
   lint-staged: ^10.4.2
   prettier: ^2.0.5
@@ -35,6 +36,9 @@ specifiers:
   ts-jest: ^26.3.0
   tslib: ^2.0.0
   typescript: ^4.0.2
+
+dependencies:
+  json-stringify-safe: 5.0.1
 
 devDependencies:
   '@babel/core': 7.14.0
@@ -6399,7 +6403,6 @@ packages:
 
   /json-stringify-safe/5.0.1:
     resolution: {integrity: sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=}
-    dev: true
 
   /json5/1.0.1:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
