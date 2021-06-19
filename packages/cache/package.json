@@ -66,6 +66,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-file-util": "^0.0.4"
+    "ginlibs-file-util": "^0.0.4",
+    "json-stringify-safe": "^5.0.1"
   }
 }
