@@ -69,5 +69,6 @@
     "ginlibs-file-util": "^0.0.4",
     "ginlibs-type-check": "^0.0.17",
     "json-stringify-safe": "^5.0.1"
-  }
+  },
+  "gitHead": "41695ee7cd51d3c2658fc8bbee01129417cf24f9"
 }
