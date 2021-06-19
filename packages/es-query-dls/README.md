@@ -191,3 +191,32 @@ new EsQueryDls().must.like({
   ]
 }
 ```
+
+# Test Report
+
+> Tests are using jest, to run the tests use:
+
+```sh
+$ npm run test
+```
+
+report detail
+
+```sh
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |   75.51 |    22.62 |   52.38 |   76.84 |                   
+ index.ts |   53.19 |     12.5 |   28.57 |   55.56 | 35-64,71,96-114   
+ leaf.ts  |   96.08 |    83.33 |     100 |      96 | 59,97             
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        3.418 s
+Ran all test suites.
+```
+
+---
+
+# License (MIT)
