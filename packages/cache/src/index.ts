@@ -20,7 +20,7 @@ export class Cache {
     this.dir = dir
   }
 
-  write(...content: string[]) {
+  write(...content: any[]) {
     const cacheFilePath = join(this.dir || os.tmpdir(), this.fileName)
     console.log(cacheFilePath)
     const newCont = content
