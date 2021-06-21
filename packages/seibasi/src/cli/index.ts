@@ -16,12 +16,24 @@ const cli = new Liftoff({
   v8flags,
 })
 
+const getConfig = (liftEnv) => {
+  const configPath = liftEnv.configPath
+  if (!configPath) {
+    return {}
+  }
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const config = require(configPath)
+  return config
+}
+
 const onPrepare = function (liftEnv) {
   const params = argv._ || []
   // cache.write(JSON.stringify(argv, undefined, 2))
+  const config = getConfig(liftEnv)
 
   globalThis._cliArgv = argv
   globalThis._cliLiftEnv = liftEnv
+  globalThis._cliConfig = config
 
   if (argv.v || argv.version) {
     try {
