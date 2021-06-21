@@ -26,12 +26,6 @@ specifiers:
   eslint-import-resolver-typescript: ^2.2.0
   eslint-plugin-import: ^2.22.0
   eslint-plugin-prettier: ^3.1.4
-  ginlibs-cache: ^0.0.5
-  ginlibs-file-util: ^0.0.4
-  ginlibs-log: ^0.0.4
-  ginlibs-template: ^0.0.4
-  ginlibs-type-check: ^0.0.17
-  ginlibs-utils: ^0.0.7
   glob: ^7.1.6
   husky: ^4.2.5
   interpret: ^2.2.0
@@ -56,12 +50,6 @@ specifiers:
 dependencies:
   chalk: 4.1.1
   chokidar: 3.5.1
-  ginlibs-cache: 0.0.5
-  ginlibs-file-util: 0.0.4
-  ginlibs-log: 0.0.4
-  ginlibs-template: 0.0.4
-  ginlibs-type-check: 0.0.17
-  ginlibs-utils: 0.0.7
   glob: 7.1.7
   interpret: 2.2.0
   liftoff: 3.1.0
@@ -2670,6 +2658,7 @@ packages:
     dependencies:
       '@types/minimatch': 3.0.4
       '@types/node': 15.0.2
+    dev: true
 
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
@@ -2710,6 +2699,7 @@ packages:
 
   /@types/minimatch/3.0.4:
     resolution: {integrity: sha512-1z8k4wzFnNjVK/tlxvrWuK5WMt6mydWWP7+zvH5eFep4oj+UkrfiJTRtjCeBXNpwaA/FYqqtb4/QS4ianFpIRA==}
+    dev: true
 
   /@types/minimist/1.2.1:
     resolution: {integrity: sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==}
@@ -2717,6 +2707,7 @@ packages:
 
   /@types/node/15.0.2:
     resolution: {integrity: sha512-p68+a+KoxpoB47015IeYZYRrdqMUcpbK8re/zpFB8Ld46LHC1lPEbp3EXgkEhAYEcPvjJF6ZO+869SQ0aH1dcA==}
+    dev: true
 
   /@types/normalize-package-data/2.4.0:
     resolution: {integrity: sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==}
@@ -5195,52 +5186,6 @@ packages:
       assert-plus: 1.0.0
     dev: true
 
-  /ginlibs-cache/0.0.5:
-    resolution: {integrity: sha512-ac0iVZNGKVNJ2tBjso+FS5t1Z8Og96+Eo9XbD0RVClv/Q3IO8tndDfQnEmkDWT1maZgc/49u1YjXI7RD1upkJQ==}
-    dependencies:
-      ginlibs-file-util: 0.0.4
-      ginlibs-type-check: 0.0.17
-      json-stringify-safe: 5.0.1
-    dev: false
-
-  /ginlibs-file-util/0.0.4:
-    resolution: {integrity: sha512-NX+QGJPQ5Rdv5v634p+OZZ9IBXyr4A4Wwuo3BaDAonSs/J2izX4WwqYO2hdHXQgRN0MEuc4HmzPeP4A6lxaP8g==}
-    dependencies:
-      '@types/glob': 7.1.3
-      chokidar: 3.5.1
-      ginlibs-type-check: 0.0.8
-      glob: 7.1.7
-      shelljs: 0.8.4
-    dev: false
-
-  /ginlibs-log/0.0.4:
-    resolution: {integrity: sha512-aqnYAjggA7ys22OBfYTzN13NCCSE/+DnttAOsbIovfMTu6OFFLE8vCCnhkMcdJv+Uvqh8JBFFmgNU0FzoXI9uA==}
-    dependencies:
-      chalk: 4.1.1
-      ginlibs-type-check: 0.0.8
-    dev: false
-
-  /ginlibs-template/0.0.4:
-    resolution: {integrity: sha512-f+JsUVa0ZRrRycqqG5fBrzxJ+CTxsMEtg/LX3gTibFYRwuNiBogQ9xFmkuExPzWZsW62kYbk8xxKzfd+DOVbfg==}
-    dependencies:
-      ginlibs-file-util: 0.0.4
-      ginlibs-type-check: 0.0.8
-    dev: false
-
-  /ginlibs-type-check/0.0.17:
-    resolution: {integrity: sha512-jZh8hKflCjnAVLsNqGUy8hI26lI04OwFgBV7qdGq3bQ4M/xVEHCQNmIxU9TXm9qJ134R6S3+EkNYszLwKpOG3A==}
-    dev: false
-
-  /ginlibs-type-check/0.0.8:
-    resolution: {integrity: sha512-RAMjwkrU68ZfL/2kfxNhVe7Ym0ATILo9z7ZBEfMh0kXSNyhSBkwHChnBNdkReSdVGt5zHjLPeyIPonFEdP35xA==}
-    dev: false
-
-  /ginlibs-utils/0.0.7:
-    resolution: {integrity: sha512-9xYr7CXeAqaQuW7dhUb30WFuKU62FE37dlSxjc7Nbishyn6zu3d4zTXBcLp+UwHdIaflDV3hbiqRTsd93Hf3Kg==}
-    dependencies:
-      ginlibs-type-check: 0.0.8
-    dev: false
-
   /git-raw-commits/2.0.0:
     resolution: {integrity: sha512-w4jFEJFgKXMQJ0H0ikBk2S+4KP2VEjhCvLCNqbNRQC8BgGWgLKNCO7a9K9LI+TVT7Gfoloje502sEnctibffgg==}
     engines: {node: '>=6.9.0'}
@@ -6627,6 +6572,7 @@ packages:
 
   /json-stringify-safe/5.0.1:
     resolution: {integrity: sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=}
+    dev: true
 
   /json5/0.5.1:
     resolution: {integrity: sha1-Hq3nrMASA0rYTiOWdn6tn6VJWCE=}
