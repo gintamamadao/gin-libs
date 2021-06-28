@@ -21,7 +21,7 @@
     "url": "git+https://github.com/gintamamadao/gin-libs.git"
   },
   "bin": {
-    "md-note": "./bin/cli.js"
+    "seibasi": "./bin/cli.js"
   },
   "author": "",
   "license": "MIT",
