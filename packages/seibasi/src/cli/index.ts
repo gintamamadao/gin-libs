@@ -5,6 +5,7 @@ import Liftoff from 'liftoff'
 import minimist from 'minimist'
 import fsUtil from 'ginlibs-file-util'
 import { resolve } from 'path'
+import { getTsAst } from '../index'
 
 const processArgv = process.argv.slice(2)
 const argv = minimist(processArgv)
@@ -42,9 +43,7 @@ const onPrepare = function (liftEnv) {
     } catch (e) {}
   }
 
-  const fn: any = () => {
-    console.log('ginlibs-seibasi')
-  }
+  const fn: any = getTsAst
 
   cli.execute(liftEnv, () => {
     return fn()
