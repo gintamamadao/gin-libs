@@ -6,8 +6,9 @@
   "scripts": {
     "boot": "lerna bootstrap",
     "clean": "lerna clean",
-    "build": "lerna run build",
+    "build": "lerna run del:lib && lerna run build",
     "test": "lerna run test",
+    "del:lib": "lerna run del:lib",
     "pub": "lerna publish",
     "bp": "lerna run build && lerna publish",
     "prettier": "prettier --write 'packages/*/src/**/*.{js,ts}'",

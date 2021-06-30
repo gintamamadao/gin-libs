@@ -14,6 +14,7 @@
     "build": "rimraf bin; rollup -c rollup.config.js; chmod 775 bin/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz",
+    "del:lib": "rm -rf lib",
     "pub": "lerna publish"
   },
   "repository": {

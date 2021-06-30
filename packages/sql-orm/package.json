@@ -16,6 +16,7 @@
     "dev": "rollup -c rollup.config.js -w",
     "build": "rollup -c rollup.config.js",
     "commit": "git-cz",
+    "del:lib": "rm -rf lib",
     "pub": "lerna publish"
   },
   "keywords": [],

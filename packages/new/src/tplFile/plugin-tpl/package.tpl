@@ -27,6 +27,7 @@
     "lint:fix": "eslint --fix 'src/**/!(*.test).{js,ts}'",
     "prettier": "prettier --write 'src/**/!(*.test).{js,ts}'",
     "dev": "rollup -c rollup.config.js -w",
+    "del:lib": "rm -rf lib",
     "pub": "lerna publish",
     "build": "rimraf lib; rollup -c rollup.config.js"
   },
