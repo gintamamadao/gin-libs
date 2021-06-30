@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-type-check",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "检查数据类型的工具函数",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

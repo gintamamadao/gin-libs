@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-cache",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -67,8 +67,8 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-file-util": "^0.0.4",
-    "ginlibs-type-check": "^0.0.17",
+    "ginlibs-file-util": "^0.0.5",
+    "ginlibs-type-check": "^0.0.18",
     "json-stringify-safe": "^5.0.1"
   },
   "gitHead": "41695ee7cd51d3c2658fc8bbee01129417cf24f9"

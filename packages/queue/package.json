@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-queue",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -68,8 +68,8 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-lock": "^0.0.9",
+    "ginlibs-lock": "^0.0.10",
     "ginlibs-type-check": "^0.0.8",
-    "ginlibs-utils": "^0.0.7"
+    "ginlibs-utils": "^0.0.8"
   }
 }

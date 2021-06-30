@@ -1,6 +1,6 @@
 {
   "name": "ginlibs-es-query-dls",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "生成 es 查询 dls 的工具类",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -68,8 +68,8 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "ginlibs-format": "^0.0.8",
-    "ginlibs-set-key": "^0.0.8",
+    "ginlibs-format": "^0.0.9",
+    "ginlibs-set-key": "^0.0.9",
     "ginlibs-type-check": "^0.0.8"
   },
   "gitHead": "41695ee7cd51d3c2658fc8bbee01129417cf24f9"
